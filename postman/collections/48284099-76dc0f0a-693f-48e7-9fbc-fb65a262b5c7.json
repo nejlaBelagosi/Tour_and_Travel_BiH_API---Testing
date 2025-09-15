@@ -570,7 +570,6 @@
 											"                pm.expect(item.favoriteItemId).to.be.a(\"number\");\r",
 											"                pm.expect(item.packageId).to.be.a(\"number\");\r",
 											"                pm.expect(item.userId).to.be.a(\"number\");\r",
-											"                pm.expect(item.favoriteItemId).to.be.a(\"number\");\r",
 											"            })\r",
 											"        })\r",
 											"\r",
