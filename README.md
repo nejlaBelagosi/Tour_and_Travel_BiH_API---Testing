@@ -14,7 +14,17 @@ It is designed for **API testing, CI/CD integration, and documentation**.
 ---
 
 ## 📂 Repository Structure
+```
+Tour_and_Travel_BiH_API---Testing/
+├── Tests/
+│   └── Positive Endpoints/
+├── postman/
+│   ├── collections/
+│   └── environment/
+├── reports/
+└── README.md
 
+```
 
 ---
 
@@ -40,20 +50,19 @@ cd Tour_and_Travel_BiH_API---Testing
 ---
 
 ## ▶️ Running Tests
-
--Run the tests directly in Postman:
--Open Postman.
--Import the collection from collections/.
--Import the environment from environments/.
--Start the Collection Runner in Postman.
--View results inside Postman or export them manually.
+- Run the tests directly in Postman:
+- Open Postman.
+- Import the collection from collections/.
+- Import the environment from environments/.
+- Start the Collection Runner in Postman.
+- View results inside Postman or export them manually.
 
 ---
 
 ## 📝 Notes
 
--⚠️ This API is running locally (http://localhost:5278/) → make sure backend is up before running tests.
--⚠️ Authentication uses Bearer Token – headers must include a valid Authorization token.
+- ⚠️ This API is running locally (http://localhost:5278/) → make sure backend is up before running tests.
+- ⚠️ Authentication uses Bearer Token – headers must include a valid Authorization token.
 
 ---
 
