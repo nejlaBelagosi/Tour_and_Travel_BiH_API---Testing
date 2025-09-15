@@ -1,3 +1,7 @@
+pm.test("Response is JSON", function () {
+    pm.expect(pm.response.json());
+});
+
 const jsonData = pm.response.json();
 
 if (jsonData && jsonData.reservationId) {
