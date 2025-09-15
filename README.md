@@ -20,7 +20,6 @@ Tour_and_Travel_BiH_API---Testing/
 │   └── Positive Endpoints/
 ├── postman/
 │   ├── collections/
-│   └── environment/
 ├── reports/
 └── README.md
 
