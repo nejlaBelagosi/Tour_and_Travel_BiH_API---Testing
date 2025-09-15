@@ -74,7 +74,7 @@
 											"//checks if API endpoint URL is valid\r",
 											"pm.test(\"URL Endpoint is valid\", function(){\r",
 											"    const baseUrl = pm.variables.get(\"baseUrl\");\r",
-											"    pm.expect(pm.request.url.toString()).to.eql(`${pm.environment.get('baseUrl')}/api/Users/RegisterUser`);\r",
+											"    pm.expect(pm.request.url.toString()).to.eql(`${baseUrl}/api/Users/RegisterUser`);\r",
 											"});\r",
 											"\r",
 											"//checks required fields\r",
