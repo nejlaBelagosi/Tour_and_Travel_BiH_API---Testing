@@ -221,7 +221,7 @@
 										"id": "7891d8bf-38e5-4d05-8e8b-389aea985318",
 										"exec": [
 											"//authorization token automaticaly added to the environment variable\r",
-											"let jsonData = pm.response.json();\r",
+											"const jsonData = pm.response.json();\r",
 											"\r",
 											"// checks if response has token value\r",
 											"if (jsonData.token) {\r",
