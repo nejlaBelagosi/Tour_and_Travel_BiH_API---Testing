@@ -42,6 +42,7 @@ Tour_and_Travel_BiH_API---Testing/
    
     git clone https://github.com/nejlaBelagosi/Tour_and_Travel_BiH.git
     cd Tour_and_Travel_BiH/TourAndTravelBiH
+
 2. Clone this repository with Postman tests:
 
    git clone https://github.com/nejlaBelagosi/Tour_and_Travel_BiH_API---Testing.git
