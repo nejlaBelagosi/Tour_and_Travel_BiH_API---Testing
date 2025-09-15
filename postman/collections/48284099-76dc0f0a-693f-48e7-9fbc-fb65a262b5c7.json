@@ -402,6 +402,10 @@
 										"exec": [
 											"const jsonData = pm.response.json();\r",
 											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
 											"pm.test(\"packageId matches request\", function () {\r",
 											"    const requestBody = pm.request.body ? JSON.parse(pm.request.body.raw) : {};\r",
 											"    const jsonData = pm.response.json();\r",
