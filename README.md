@@ -1,6 +1,6 @@
 # 🌍 Tour & Travel BiH API – Postman Tests
 
-This repository contains **Postman collections, environments, and test scripts** for the **Tour & Travel API**.  
+This repository contains **Postman collections, environments, and test scripts** for the **Tour & Travel BiH API**.  
 It is designed for **API testing, CI/CD integration, and documentation**.
 
 ---
