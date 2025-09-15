@@ -400,6 +400,10 @@
 									"script": {
 										"id": "3cfcedf1-c561-464a-bca0-e20d6d8ef8d4",
 										"exec": [
+											"pm.test(\"Response is JSON\", function () {\r",
+											"    pm.expect(pm.response.json());\r",
+											"});\r",
+											"\r",
 											"const jsonData = pm.response.json();\r",
 											"\r",
 											"pm.test(\"Status code is 200\", function () {\r",
