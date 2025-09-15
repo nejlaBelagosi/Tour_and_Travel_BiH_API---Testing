@@ -33,7 +33,6 @@ if (isJson) {
                 pm.expect(item.favoriteItemId).to.be.a("number");
                 pm.expect(item.packageId).to.be.a("number");
                 pm.expect(item.userId).to.be.a("number");
-                pm.expect(item.favoriteItemId).to.be.a("number");
             })
         })
 
