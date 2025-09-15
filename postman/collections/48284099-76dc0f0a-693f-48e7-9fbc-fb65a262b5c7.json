@@ -829,6 +829,11 @@
 									"script": {
 										"id": "6e3454f8-7682-44f1-ab71-664c8286c06f",
 										"exec": [
+											"pm.test(\"Response is JSON\", function () {\r",
+											"    pm.expect(pm.response.json());\r",
+											"});\r",
+											"\r",
+											"\r",
 											"const jsonData = pm.response.json();\r",
 											"\r",
 											"if (jsonData && jsonData.reservationId) {\r",
