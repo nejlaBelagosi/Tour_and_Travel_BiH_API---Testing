@@ -40,12 +40,12 @@ Tour_and_Travel_BiH_API---Testing/
  ```
 1.Clone the backend API project (if you don’t already have it locally):
    ```bash
-   git clone https://github.com/nejlaBelagosi/Tour_and_Travel_BiH.git
-   cd Tour_and_Travel_BiH/TourAndTravelBiH
-
+    git clone https://github.com/nejlaBelagosi/Tour_and_Travel_BiH.git
+    cd Tour_and_Travel_BiH/TourAndTravelBiH
 2. Clone this repository with Postman tests:
-git clone https://github.com/nejlaBelagosi/Tour_and_Travel_BiH_API---Testing.git
-cd Tour_and_Travel_BiH_API---Testing
+ ```bash
+   git clone https://github.com/nejlaBelagosi/Tour_and_Travel_BiH_API---Testing.git
+   cd Tour_and_Travel_BiH_API---Testing
 ```
 ---
 
