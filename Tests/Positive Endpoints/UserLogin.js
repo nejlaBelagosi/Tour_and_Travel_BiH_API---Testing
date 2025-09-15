@@ -1,5 +1,5 @@
 //authorization token automaticaly added to the environment variable
-let jsonData = pm.response.json();
+const jsonData = pm.response.json();
 
 // checks if response has token value
 if (jsonData.token) {
