@@ -1339,6 +1339,11 @@
 									"script": {
 										"id": "8217a4ac-cf91-428d-9fb8-02597f29b136",
 										"exec": [
+											"pm.test(\"Response is JSON\", function () {\r",
+											"    pm.expect(pm.response.json());\r",
+											"});\r",
+											"\r",
+											"\r",
 											"const jsonData = pm.response.json();\r",
 											"\r",
 											"pm.test(\"Status code is 200\", function () {\r",
