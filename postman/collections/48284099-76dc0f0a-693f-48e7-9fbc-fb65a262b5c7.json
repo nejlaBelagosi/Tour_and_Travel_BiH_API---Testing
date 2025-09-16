@@ -2710,7 +2710,7 @@
 									"response": []
 								},
 								{
-									"name": "New Request",
+									"name": "GetAllReviews",
 									"id": "48284099-de5dcc1e-f190-468e-a6d8-60f77ee7941e",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
