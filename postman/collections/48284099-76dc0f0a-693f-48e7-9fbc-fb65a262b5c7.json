@@ -2585,14 +2585,26 @@
 									"response": []
 								},
 								{
-									"name": "New Request",
+									"name": "UpdataeReservation",
 									"id": "48284099-e22c2a16-0c21-4fe2-8b85-41112609689f",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
 									"request": {
-										"method": "GET",
-										"header": []
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/{{reservationId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Reservation",
+												"UpdateReservation",
+												"{{reservationId}}"
+											]
+										}
 									},
 									"response": []
 								}
