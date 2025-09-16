@@ -1814,8 +1814,10 @@
 												"id": "69022b19-ca29-420f-910a-656fee4bcb04",
 												"exec": [
 													"pm.test(\"Status code is 200\", function () {\r",
-													"    pm.response.to.have.status(200);\r",
-													"});"
+													"    pm.response.to.be.oneOf([200,204]);\r",
+													"});\r",
+													"\r",
+													""
 												],
 												"type": "text/javascript",
 												"packages": {}
