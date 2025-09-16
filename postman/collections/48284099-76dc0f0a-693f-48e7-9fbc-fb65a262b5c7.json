@@ -4082,7 +4082,59 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-bf1f7a5b-bbd1-4086-9df0-fda86781b570",
+											"name": "GetReviewByPackageId-nonexistent packageId",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId/{{tourPackageId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Review",
+														"GetReviewByPackageId",
+														"GetReviewByPackageId",
+														"{{tourPackageId}}"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "2"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:30:19 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "[]"
+										}
+									]
 								},
 								{
 									"name": "DeleteReview",
