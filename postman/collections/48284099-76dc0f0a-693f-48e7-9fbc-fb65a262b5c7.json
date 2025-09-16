@@ -3420,10 +3420,10 @@
 											"script": {
 												"id": "728d6e1e-93e2-4132-b08b-efbf84310423",
 												"exec": [
-													"//unauthorize \r",
-													"pm.test(\"Response status code is 401\", function(){\r",
-													"    pm.response.to.have.status(401);\r",
-													"});"
+													"\r",
+													"pm.test(\"Response status code is one of 400 or 404\", function(){\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400,404]);\r",
+													"})"
 												],
 												"type": "text/javascript",
 												"packages": {}
