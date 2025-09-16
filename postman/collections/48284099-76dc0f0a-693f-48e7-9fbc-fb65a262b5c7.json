@@ -1956,7 +1956,13 @@
 											]
 										},
 										"method": "DELETE",
-										"header": [],
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
 										"url": {
 											"raw": "{{baseUrl}}/api/Review/DeleteReview/{{reviewId}}",
 											"host": [
