@@ -3151,9 +3151,12 @@
 											"script": {
 												"id": "2340732c-a7f3-4758-89bf-2f84934a1a63",
 												"exec": [
-													"// expect status code 401\r",
-													"pm.test(\"Response to have status 401\", function(){\r",
-													"    pm.response.to.have.status(401);\r",
+													"pm.test(\"Status code is 404 Not Found\", () => {\r",
+													"    pm.response.to.have.status(404);\r",
+													"});\r",
+													"pm.test(\"Response indicates favorite item not found\", () => {\r",
+													"    const jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.title || jsonData.message).to.include.oneOf([\"not found\", \"does not exist\"]);\r",
 													"});"
 												],
 												"type": "text/javascript",
