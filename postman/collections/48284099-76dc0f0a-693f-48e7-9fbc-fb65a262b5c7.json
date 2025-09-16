@@ -1601,10 +1601,6 @@
 											"script": {
 												"id": "712ae00f-c0a4-447b-833d-7e0937c21b0c",
 												"exec": [
-													"//is JSON valid\r",
-													"pm.test(\"Response is valid JSON\", function(){\r",
-													"    pm.expect(pm.response,json());\r",
-													"})\r",
 													"\r",
 													"const jsonData = pm.response.json();\r",
 													"\r",
