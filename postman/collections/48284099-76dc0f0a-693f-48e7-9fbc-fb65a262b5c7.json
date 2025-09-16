@@ -2663,14 +2663,25 @@
 							"name": "Reviews",
 							"item": [
 								{
-									"name": "New Request",
+									"name": "LeaveReview",
 									"id": "48284099-b8cff5ac-35c4-4efd-9d68-618cdc4ec0d7",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
 									"request": {
-										"method": "GET",
-										"header": []
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Review/PostReview",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Review",
+												"PostReview"
+											]
+										}
 									},
 									"response": []
 								}
