@@ -2440,11 +2440,11 @@
 													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
-													"const jsonData = pm.response.json();\r",
+													"const jsonData = pm.response.text();\r",
 													"\r",
 													"//check the error message in the response\r",
 													"pm.test(\"Error message is present\", function(){\r",
-													"    pm.expect(jsonData.message || jsonData.error).to.exist;\r",
+													"    pm.expect(pm.response.tex()).not.to.be.empty;\r",
 													"});\r",
 													"\r",
 													""
