@@ -3636,7 +3636,7 @@
 									"response": [
 										{
 											"id": "48284099-5b1f0328-354e-42bb-94ce-b6646fc807b8",
-											"name": "LeaveReview",
+											"name": "LeaveReview-unauthorized",
 											"originalRequest": {
 												"method": "POST",
 												"header": [],
