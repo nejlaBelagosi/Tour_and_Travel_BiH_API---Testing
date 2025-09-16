@@ -4411,8 +4411,8 @@
 												"id": "4da49e5b-f4ce-41bb-9295-77c1a1864ecf",
 												"exec": [
 													"// Invalid accountId\r",
-													"pm.test(\"Status code is 404\", function () {\r",
-													"    pm.response.to.have.status(404);\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
 													"});"
 												],
 												"type": "text/javascript",
