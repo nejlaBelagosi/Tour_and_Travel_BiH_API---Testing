@@ -2551,11 +2551,11 @@
 											"script": {
 												"id": "594d8e2d-85dd-46bc-9d81-dfec4a8a5f3d",
 												"exec": [
-													"//Expecting a 409 for duplicated username\r",
+													"//Expecting a 400 for duplicated username\r",
 													"\r",
 													"//status code\r",
-													"pm.test(\"Response statuse code is 409\", function(){\r",
-													"    pm.response.to.have.status(409);\r",
+													"pm.test(\"Response statuse code is 400\", function(){\r",
+													"    pm.response.to.have.status(400);\r",
 													"});\r",
 													"\r",
 													"const jsonData = pm.response.json();\r",
