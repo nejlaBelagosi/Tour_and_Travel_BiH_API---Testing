@@ -1084,7 +1084,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"totalTravelers\": 3,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 15,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n}",
+											"raw": "{\r\n  \"totalTravelers\": 3,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 15,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"zavrseno\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
