@@ -3205,9 +3205,10 @@
 													"pm.test(\"Status code is 404 Not Found\", () => {\r",
 													"    pm.response.to.have.status(404);\r",
 													"});\r",
+													"\r",
 													"pm.test(\"Response indicates favorite item not found\", () => {\r",
-													"    const jsonData = pm.response.text();\r",
-													"    pm.expect(jsonData.title || jsonData.message).to.include.oneOf([\"not found\", \"does not exist\"]);\r",
+													"    const responseText = pm.response.text();\r",
+													"    pm.expect(responseText.toLowerCase()).to.include.oneOf([\"not found\", \"does not exist\"]);\r",
 													"});"
 												],
 												"type": "text/javascript",
