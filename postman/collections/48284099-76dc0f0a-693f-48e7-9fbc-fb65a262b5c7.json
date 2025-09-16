@@ -2794,8 +2794,20 @@
 										"disableBodyPruning": true
 									},
 									"request": {
-										"method": "GET",
-										"header": []
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Account",
+												"UpdateAccount",
+												"{{accountId}}"
+											]
+										}
 									},
 									"response": []
 								}
