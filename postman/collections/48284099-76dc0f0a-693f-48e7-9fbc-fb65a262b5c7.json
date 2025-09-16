@@ -14,7 +14,7 @@
 			"name": "EndUser",
 			"item": [
 				{
-					"name": "Positive Ednpoints",
+					"name": "Positive Tests",
 					"item": [
 						{
 							"name": "Create User & Login",
