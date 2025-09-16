@@ -2866,7 +2866,7 @@
 									]
 								},
 								{
-									"name": "Login-missing field Copy",
+									"name": "Login-invalid username",
 									"event": [
 										{
 											"listen": "test",
