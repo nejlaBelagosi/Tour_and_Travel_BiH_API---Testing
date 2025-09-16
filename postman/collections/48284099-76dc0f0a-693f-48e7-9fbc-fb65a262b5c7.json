@@ -2616,7 +2616,19 @@
 									},
 									"request": {
 										"method": "GET",
-										"header": []
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Reservation/GetReservationByUserId/{{endUserId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Reservation",
+												"GetReservationByUserId",
+												"{{endUserId}}"
+											]
+										}
 									},
 									"response": []
 								}
