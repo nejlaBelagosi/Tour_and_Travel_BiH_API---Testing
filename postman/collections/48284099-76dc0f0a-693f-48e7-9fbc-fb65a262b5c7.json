@@ -4337,13 +4337,47 @@
 							"item": [
 								{
 									"name": "UpdateAccount",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "4da49e5b-f4ce-41bb-9295-77c1a1864ecf",
+												"exec": [
+													"// Invalid accountId\r",
+													"if (pm.response.code === 404) {\r",
+													"    pm.test(\"Account not found\", function () {\r",
+													"        pm.expect(pm.response.text()).to.include(\"not found\");\r",
+													"    });\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-d244ba19-83f7-4de5-b101-bbc281c416a0",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "PUT",
-										"header": [],
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
 										"url": {
 											"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
 											"host": [
