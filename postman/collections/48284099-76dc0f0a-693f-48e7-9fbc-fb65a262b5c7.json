@@ -4469,11 +4469,13 @@
 												"id": "08adefb1-ce25-4b05-8750-113c62bd2cdd",
 												"exec": [
 													"// Already logged out or missing token\r",
-													"if (pm.response.code === 400) {\r",
-													"    pm.test(\"Logout failed - already logged out or token missing\", function () {\r",
-													"        pm.expect(pm.response.text().toLowerCase()).to.include(\"logout\");\r",
-													"    });\r",
-													"}"
+													"pm.test(\"Status code is 404 or 400\", () => {\r",
+													"    pm.expect([400,404]).to.include(pm.response.code);\r",
+													"});\r",
+													"pm.test(\"Response indicates token not found or already logged out\", () => {\r",
+													"    const responseText = pm.response.text();\r",
+													"    pm.expect(responseText.toLowerCase()).to.include.oneOf([\"not found\", \"logout\"]);\r",
+													"});"
 												],
 												"type": "text/javascript",
 												"packages": {}
