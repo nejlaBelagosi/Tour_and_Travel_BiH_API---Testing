@@ -3523,6 +3523,22 @@
 								},
 								{
 									"name": "DeleteReservation",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "b03c99c5-b11a-4603-a956-7999d50a41a1",
+												"exec": [
+													"//unauthorized\r",
+													"pm.test(\"Respon status is 401\", function(){\r",
+													"    pm.response.to.have.status(401);\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-675600fe-76e5-46e2-9937-88243b709950",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
