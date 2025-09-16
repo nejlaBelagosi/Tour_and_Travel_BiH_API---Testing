@@ -4403,6 +4403,73 @@
 									"response": []
 								},
 								{
+									"name": "UpdateAccount Copy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "4da49e5b-f4ce-41bb-9295-77c1a1864ecf",
+												"exec": [
+													"// Invalid accountId\r",
+													"if (pm.response.code === 404) {\r",
+													"    pm.test(\"Account not found\", function () {\r",
+													"        pm.expect(pm.response.text()).to.include(\"not found\");\r",
+													"    });\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-17a4711c-326c-4124-a052-a6c44684154e",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"image.png\",\r\n  \"userId\": {{endUserId}},\r\n  \"accountTypeId\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Account",
+												"UpdateAccount",
+												"{{accountId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "UserLogout",
 									"id": "48284099-2fbc465a-a4f5-4e9d-90db-76994201fa46",
 									"protocolProfileBehavior": {
