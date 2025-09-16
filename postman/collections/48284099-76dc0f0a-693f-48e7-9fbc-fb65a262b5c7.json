@@ -3903,8 +3903,8 @@
 											"script": {
 												"id": "9ff4375d-500b-46c6-befe-971ffa41447f",
 												"exec": [
-													"pm.test(\"Status code is 401\", function () {\r",
-													"    pm.response.to.have.status(401);\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
 													"});"
 												],
 												"type": "text/javascript",
