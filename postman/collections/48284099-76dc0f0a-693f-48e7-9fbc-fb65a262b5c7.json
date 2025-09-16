@@ -3414,6 +3414,22 @@
 								},
 								{
 									"name": "UpdateReservation",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "692c9745-ceaa-4e87-b576-88f3f598bee5",
+												"exec": [
+													"//unauthorized\r",
+													"pm.test(\"Response status is 401\", function(){\r",
+													"    pm.response.to.have.status(401);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-e22c2a16-0c21-4fe2-8b85-41112609689f",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
@@ -3434,7 +3450,52 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-278872a1-4557-43d1-b70f-30c18e4598c1",
+											"name": "UpdataeReservation",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/{{reservationId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Reservation",
+														"UpdateReservation",
+														"{{reservationId}}"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "187"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:19:22 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-de0db95016e3d91c246c5d0c18d86f59-204ddf2dd7bcfcd5-00\"\n}"
+										}
+									]
 								},
 								{
 									"name": "UsersReservations",
