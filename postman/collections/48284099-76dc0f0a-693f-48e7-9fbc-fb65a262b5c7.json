@@ -1750,13 +1750,14 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/{{tourPackageId}}",
+											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId/{{tourPackageId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
 												"Review",
+												"GetReviewByPackageId",
 												"GetReviewByPackageId",
 												"{{tourPackageId}}"
 											]
