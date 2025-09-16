@@ -3917,8 +3917,24 @@
 										"disableBodyPruning": true
 									},
 									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
 										"method": "PUT",
-										"header": [],
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
 										"url": {
 											"raw": "{{baseUrl}}/api/Review/UpdateReview/{{reviewId}}",
 											"host": [
