@@ -3455,7 +3455,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"totalTravelers\": 4,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 20,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 5,\r\n  \"reservationStatus\": \"reservisano\"\r\n  }",
+											"raw": "{\r\n  \"totalTravelers\": 4,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 20,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 324567890,\r\n  \"reservationStatus\": \"reservisano\"\r\n  }",
 											"options": {
 												"raw": {
 													"language": "json"
