@@ -3144,7 +3144,7 @@
 									"response": []
 								},
 								{
-									"name": "DeleteFromFavorite - unauthorized Copy",
+									"name": "DeleteFromFavorite - nonexistent id",
 									"event": [
 										{
 											"listen": "test",
