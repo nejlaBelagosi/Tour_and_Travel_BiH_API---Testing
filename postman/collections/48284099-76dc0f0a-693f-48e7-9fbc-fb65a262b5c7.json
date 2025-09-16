@@ -2544,7 +2544,7 @@
 									"response": []
 								},
 								{
-									"name": "Register User - invalid email Copy",
+									"name": "Register User - duplicate username",
 									"event": [
 										{
 											"listen": "test",
