@@ -3141,7 +3141,58 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-4680a4fb-1b17-4496-89f3-7de83fe541a7",
+											"name": "DeleteFromFavorite",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Favorite",
+														"DeleteFavorite",
+														"{{favoriteItemId}}"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "187"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:02:22 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-8acb4c8d45566878bff23d93c39c79ca-c6e84c31681d47fd-00\"\n}"
+										}
+									]
 								},
 								{
 									"name": "DeleteFromFavorite - nonexistent id",
