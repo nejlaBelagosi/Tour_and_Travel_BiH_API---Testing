@@ -14,651 +14,6 @@
 			"name": "EndUser",
 			"item": [
 				{
-					"name": "Reservations",
-					"item": [
-						{
-							"name": "MakeReservation",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "6e3454f8-7682-44f1-ab71-664c8286c06f",
-										"exec": [
-											"pm.test(\"Response is JSON\", function () {\r",
-											"    pm.expect(pm.response.json());\r",
-											"});\r",
-											"\r",
-											"\r",
-											"const jsonData = pm.response.json();\r",
-											"\r",
-											"if (jsonData && jsonData.reservationId) {\r",
-											"    pm.environment.set(\"reservationId\", jsonData.reservationId);\r",
-											"    console.log(\"reservationId saved:\", jsonData.reservationId);\r",
-											"}\r",
-											"\r",
-											"\r",
-											"// Status code check\r",
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"// Content-Type check\r",
-											"pm.test(\"Content-Type is application/json\", function () {\r",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
-											"});\r",
-											"\r",
-											"// Checks if response contains all required fields\r",
-											"pm.test(\"Response contains required fields\", function(){\r",
-											"    pm.expect(jsonData).to.be.an('object');\r",
-											"    pm.expect(jsonData).to.have.property(\"reservationId\");\r",
-											"    pm.expect(jsonData).to.have.property(\"packageId\");\r",
-											"    pm.expect(jsonData).to.have.property(\"userId\");\r",
-											"});\r",
-											"\r",
-											"// Checks if reservationId is above 0\r",
-											"pm.test(\"Reservation ID is above 0\", function(){\r",
-											"    pm.expect(jsonData.reservationId).to.be.above(0);\r",
-											"});\r",
-											"\r",
-											"// Checks if userId matches environment userId\r",
-											"pm.test(\"Fields are valid\", function(){\r",
-											"    pm.expect(jsonData).to.have.property(\"userId\");\r",
-											"    pm.expect(jsonData.userId).to.eql(Number(pm.environment.get(\"endUserId\")));\r",
-											"});\r",
-											"\r",
-											"// Test packageId matches request\r",
-											"pm.test(\"packageId matches request\", function () {\r",
-											"    const expectedPackageId = pm.request.body.raw ? JSON.parse(pm.request.body.raw).packageId : null;\r",
-											"    pm.expect(jsonData.packageId).to.eql(expectedPackageId);\r",
-											"});\r",
-											"\r",
-											"// API Response time\r",
-											"pm.test(\"API payload size is within accepted limits\", function(){\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(1024);\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-e69bb28c-ef2f-43df-baa2-64571d2b455b",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"totalTravelers\": 4,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 20,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n  }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/Reservation/PostReservation",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Reservation",
-										"PostReservation"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-3a742bff-f0c8-4c1b-bf64-7279bfac1cfe",
-									"name": "MakeReservation",
-									"originalRequest": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n  \"totalTravelers\": 4,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 20,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n  }",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/PostReservation",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Reservation",
-												"PostReservation"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "223"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:47:39 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"reservationId\": 6,\n    \"totalTravelers\": 4,\n    \"dateOfReservation\": \"2025-09-14\",\n    \"totalPrice\": 20,\n    \"userId\": 10,\n    \"packageId\": 1,\n    \"reservationStatus\": \"reservisano\",\n    \"payments\": [],\n    \"reviews\": []\n}"
-								}
-							]
-						},
-						{
-							"name": "UpdateReservation",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "836bdbab-94fc-4e45-a66b-b0ba2da0d79d",
-										"exec": [
-											"const jsonData = pm.response.json();\r",
-											"\r",
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(\"Response time is less than 500ms\", function () {\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
-											"});\r",
-											"\r",
-											"//checks if response is JSON\r",
-											"pm.test(\"Response is JSON\", function () {\r",
-											"    pm.expect(pm.response.to.be.json);\r",
-											"});\r",
-											"\r",
-											"//checks if API payload is within accepted limits\r",
-											"pm.test(\"Response payload is within accepted limits\", function () {\r",
-											"    pm.expect(pm.response.text().length).to.be.below(1024);\r",
-											"});\r",
-											"\r",
-											"//checks if API URL is correct\r",
-											"pm.test(\"API URL is correct\", function () {\r",
-											"    pm.expect(pm.request.url.toString()).to.include(`${pm.environment.get('baseUrl')}/api/Reservation/UpdateReservation/${pm.environment.get('reservationId')}`);\r",
-											"});\r",
-											"\r",
-											"//checks if API headers are correct\r",
-											"pm.test(\"API Headers are correct\", function () {\r",
-											"    pm.expect(pm.request.headers.get('Content-Type')).to.eql('application/json');\r",
-											"});\r",
-											"\r",
-											"//checks if response has expected id\r",
-											"pm.test(\"Response has expected id\", function () {\r",
-											"    let requestData = JSON.parse(pm.request.body.raw);\r",
-											"    let responseData = pm.response.json();\r",
-											"    pm.expect(responseData.id).to.eql(requestData.id);\r",
-											"});\r",
-											"\r",
-											"//checks if fields are edited\r",
-											"pm.test(\"Fields are edited\", function () {\r",
-											"    let requestData = JSON.parse(pm.request.body.raw);\r",
-											"    pm.expect(jsonData.totalTravelers).to.eql(requestData.totalTravelers);\r",
-											"    pm.expect(jsonData.dateOfReservation).to.eql(requestData.dateOfReservation);\r",
-											"    pm.expect(jsonData.totalPrice).to.eql(requestData.totalPrice);\r",
-											"    pm.expect(jsonData.userId).to.eql(requestData.userId);\r",
-											"    pm.expect(jsonData.packageId).to.eql(requestData.packageId);\r",
-											"    pm.expect(jsonData.reservationStatus).to.eql(requestData.reservationStatus);\r",
-											"\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-a4dedbaf-5a25-42d9-b148-c25846bd2ab2",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"totalTravelers\": 3,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 15,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/{{reservationId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Reservation",
-										"UpdateReservation",
-										"{{reservationId}}"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-00c5aa29-2f31-4021-b535-ab68115e5f06",
-									"name": "UpdateReservation",
-									"originalRequest": {
-										"method": "PUT",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n  \"totalTravelers\": 3,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 15,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/{{reservationId}}",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Reservation",
-												"UpdateReservation",
-												"{{reservationId}}"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "223"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:48:08 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"reservationId\": 6,\n    \"totalTravelers\": 3,\n    \"dateOfReservation\": \"2025-09-14\",\n    \"totalPrice\": 15,\n    \"userId\": 10,\n    \"packageId\": 1,\n    \"reservationStatus\": \"reservisano\",\n    \"payments\": [],\n    \"reviews\": []\n}"
-								}
-							]
-						},
-						{
-							"name": "UsersReservations",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "981a4175-23b1-479d-8b2c-6f37d8d2d173",
-										"exec": [
-											"const responseStatus = pm.response.code;\r",
-											"\r",
-											"pm.test(\"Status code is 404 or 200\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([404, 200]);\r",
-											"});\r",
-											"\r",
-											"if (responseStatus === 200) {\r",
-											"    const jsonData = pm.response.json();\r",
-											"\r",
-											"    // Response must be an array\r",
-											"    pm.test(\"Response is JSON (array)\", function () {\r",
-											"        pm.expect(jsonData).to.be.an('array');\r",
-											"    });\r",
-											"\r",
-											"    if (jsonData.length > 0) {\r",
-											"        // Each reservation has required fields\r",
-											"        pm.test(\"Each reservation has required fields\", function () {\r",
-											"            jsonData.forEach(item => {\r",
-											"                pm.expect(item).to.have.property(\"reservationId\");\r",
-											"                pm.expect(item).to.have.property(\"packageId\");\r",
-											"                pm.expect(item).to.have.property(\"userId\");\r",
-											"                pm.expect(item).to.have.property(\"totalTravelers\");\r",
-											"                pm.expect(item).to.have.property(\"totalPrice\");\r",
-											"                pm.expect(item).to.have.property(\"reservationStatus\");\r",
-											"            });\r",
-											"        });\r",
-											"\r",
-											"        // data types are valid\r",
-											"        pm.test(\"Reservation fields have correct data types\", function () {\r",
-											"            jsonData.forEach(item => {\r",
-											"                pm.expect(item.reservationId).to.be.a(\"number\");\r",
-											"                pm.expect(item.packageId).to.be.a(\"number\");\r",
-											"                pm.expect(item.userId).to.be.a(\"number\");\r",
-											"                pm.expect(item.totalTravelers).to.be.a(\"number\");\r",
-											"                pm.expect(item.totalPrice).to.be.a(\"number\");\r",
-											"                pm.expect(item.reservationStatus).to.be.a(\"string\"); \r",
-											"            });\r",
-											"        });\r",
-											"\r",
-											"        // Each reservation belongs to the logged-in user\r",
-											"        pm.test(\"Each reservation belongs to the logged-in user\", function () {\r",
-											"            const loggedInUserId = parseInt(pm.environment.get(\"endUserId\"), 10);\r",
-											"            jsonData.forEach(item => {\r",
-											"                pm.expect(item.userId).to.eql(loggedInUserId);\r",
-											"            });\r",
-											"        });\r",
-											"\r",
-											"        //checks if user has reservations\r",
-											"        pm.test(\"User has at least one reservation\", function () {\r",
-											"            pm.expect(jsonData.length).to.be.above(0);\r",
-											"        });\r",
-											"\r",
-											"    } else {\r",
-											"        // user has no reservations\r",
-											"        pm.test(\"User has no reservations\", function () {\r",
-											"            pm.expect(jsonData.length).to.eql(0);\r",
-											"        });\r",
-											"    }\r",
-											"} else {\r",
-											"    // Handle non-JSON responses gracefully\r",
-											"    pm.test(\"Response is not JSON when reservations are not found\", function () {\r",
-											"        pm.expect(pm.response.text()).to.eql(\"No reservations found for this user.\");\r",
-											"    });\r",
-											"}\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-216c1c37-8861-4af3-a07a-9cfcda40f7b4",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/api/Reservation/GetReservationsByUserId/{{endUserId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Reservation",
-										"GetReservationsByUserId",
-										"{{endUserId}}"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-c8464b5e-7226-470b-adf4-118b25cac263",
-									"name": "UsersReservations",
-									"originalRequest": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/GetReservationsByUserId/{{endUserId}}",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Reservation",
-												"GetReservationsByUserId",
-												"{{endUserId}}"
-											]
-										}
-									},
-									"status": "Not Found",
-									"code": 404,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "text/plain; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:47:24 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										},
-										{
-											"key": "Transfer-Encoding",
-											"value": "chunked"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "No reservations found for this user."
-								}
-							]
-						},
-						{
-							"name": "DeleteReservation",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8217a4ac-cf91-428d-9fb8-02597f29b136",
-										"exec": [
-											"pm.test(\"Response is JSON\", function () {\r",
-											"    pm.expect(pm.response.json());\r",
-											"});\r",
-											"\r",
-											"\r",
-											"const jsonData = pm.response.json();\r",
-											"\r",
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"//Response time is below 1000ms\r",
-											"pm.test(\"Response time is below 1000ms\", function(){\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
-											"})\r",
-											"\r",
-											"//check API Url endpoint is valid\r",
-											"pm.test(\"API URL endpoint is valid\", function(){\r",
-											"    pm.expect(pm.request.url.toString()).to.eql(`${pm.environment.get('baseUrl')}/api/Reservation/DeleteReservation/${pm.environment.get('reservationId')}`);\r",
-											"})\r",
-											"\r",
-											"//check header content type\r",
-											"pm.test(\"Content-Type is application/json\", function(){\r",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
-											"})\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-c2a91379-2b99-472c-b064-a0bb70393444",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/api/Reservation/DeleteReservation/{{reservationId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Reservation",
-										"DeleteReservation",
-										"{{reservationId}}"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-2fcec560-dfdd-4fad-9343-b028eb0a77ff",
-									"name": "DeleteReservation",
-									"originalRequest": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/DeleteReservation/{{reservationId}}",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Reservation",
-												"DeleteReservation",
-												"{{reservationId}}"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "226"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:48:18 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"reservationId\": 6,\n    \"totalTravelers\": 3,\n    \"dateOfReservation\": \"2025-09-14\",\n    \"totalPrice\": 15,\n    \"userId\": 10,\n    \"packageId\": 1,\n    \"reservationStatus\": \"reservisano\",\n    \"payments\": [],\n    \"reviews\": []\n}"
-								}
-							]
-						}
-					],
-					"id": "48284099-49d0aba0-0a3b-460f-a7a1-bee81b2282fe"
-				},
-				{
 					"name": "Reviews",
 					"item": [
 						{
@@ -2277,6 +1632,651 @@
 								}
 							],
 							"id": "48284099-f1bde025-05a5-41ee-8dce-5f5d613e71ee"
+						},
+						{
+							"name": "Reservations",
+							"item": [
+								{
+									"name": "MakeReservation",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "6e3454f8-7682-44f1-ab71-664c8286c06f",
+												"exec": [
+													"pm.test(\"Response is JSON\", function () {\r",
+													"    pm.expect(pm.response.json());\r",
+													"});\r",
+													"\r",
+													"\r",
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"if (jsonData && jsonData.reservationId) {\r",
+													"    pm.environment.set(\"reservationId\", jsonData.reservationId);\r",
+													"    console.log(\"reservationId saved:\", jsonData.reservationId);\r",
+													"}\r",
+													"\r",
+													"\r",
+													"// Status code check\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"// Content-Type check\r",
+													"pm.test(\"Content-Type is application/json\", function () {\r",
+													"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+													"});\r",
+													"\r",
+													"// Checks if response contains all required fields\r",
+													"pm.test(\"Response contains required fields\", function(){\r",
+													"    pm.expect(jsonData).to.be.an('object');\r",
+													"    pm.expect(jsonData).to.have.property(\"reservationId\");\r",
+													"    pm.expect(jsonData).to.have.property(\"packageId\");\r",
+													"    pm.expect(jsonData).to.have.property(\"userId\");\r",
+													"});\r",
+													"\r",
+													"// Checks if reservationId is above 0\r",
+													"pm.test(\"Reservation ID is above 0\", function(){\r",
+													"    pm.expect(jsonData.reservationId).to.be.above(0);\r",
+													"});\r",
+													"\r",
+													"// Checks if userId matches environment userId\r",
+													"pm.test(\"Fields are valid\", function(){\r",
+													"    pm.expect(jsonData).to.have.property(\"userId\");\r",
+													"    pm.expect(jsonData.userId).to.eql(Number(pm.environment.get(\"endUserId\")));\r",
+													"});\r",
+													"\r",
+													"// Test packageId matches request\r",
+													"pm.test(\"packageId matches request\", function () {\r",
+													"    const expectedPackageId = pm.request.body.raw ? JSON.parse(pm.request.body.raw).packageId : null;\r",
+													"    pm.expect(jsonData.packageId).to.eql(expectedPackageId);\r",
+													"});\r",
+													"\r",
+													"// API Response time\r",
+													"pm.test(\"API payload size is within accepted limits\", function(){\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1024);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-e69bb28c-ef2f-43df-baa2-64571d2b455b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"totalTravelers\": 4,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 20,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n  }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Reservation/PostReservation",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Reservation",
+												"PostReservation"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-3a742bff-f0c8-4c1b-bf64-7279bfac1cfe",
+											"name": "MakeReservation",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"totalTravelers\": 4,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 20,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n  }",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Reservation/PostReservation",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Reservation",
+														"PostReservation"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "223"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:47:39 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"reservationId\": 6,\n    \"totalTravelers\": 4,\n    \"dateOfReservation\": \"2025-09-14\",\n    \"totalPrice\": 20,\n    \"userId\": 10,\n    \"packageId\": 1,\n    \"reservationStatus\": \"reservisano\",\n    \"payments\": [],\n    \"reviews\": []\n}"
+										}
+									]
+								},
+								{
+									"name": "UpdateReservation",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "836bdbab-94fc-4e45-a66b-b0ba2da0d79d",
+												"exec": [
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"Response time is less than 500ms\", function () {\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+													"});\r",
+													"\r",
+													"//checks if response is JSON\r",
+													"pm.test(\"Response is JSON\", function () {\r",
+													"    pm.expect(pm.response.to.be.json);\r",
+													"});\r",
+													"\r",
+													"//checks if API payload is within accepted limits\r",
+													"pm.test(\"Response payload is within accepted limits\", function () {\r",
+													"    pm.expect(pm.response.text().length).to.be.below(1024);\r",
+													"});\r",
+													"\r",
+													"//checks if API URL is correct\r",
+													"pm.test(\"API URL is correct\", function () {\r",
+													"    pm.expect(pm.request.url.toString()).to.include(`${pm.environment.get('baseUrl')}/api/Reservation/UpdateReservation/${pm.environment.get('reservationId')}`);\r",
+													"});\r",
+													"\r",
+													"//checks if API headers are correct\r",
+													"pm.test(\"API Headers are correct\", function () {\r",
+													"    pm.expect(pm.request.headers.get('Content-Type')).to.eql('application/json');\r",
+													"});\r",
+													"\r",
+													"//checks if response has expected id\r",
+													"pm.test(\"Response has expected id\", function () {\r",
+													"    let requestData = JSON.parse(pm.request.body.raw);\r",
+													"    let responseData = pm.response.json();\r",
+													"    pm.expect(responseData.id).to.eql(requestData.id);\r",
+													"});\r",
+													"\r",
+													"//checks if fields are edited\r",
+													"pm.test(\"Fields are edited\", function () {\r",
+													"    let requestData = JSON.parse(pm.request.body.raw);\r",
+													"    pm.expect(jsonData.totalTravelers).to.eql(requestData.totalTravelers);\r",
+													"    pm.expect(jsonData.dateOfReservation).to.eql(requestData.dateOfReservation);\r",
+													"    pm.expect(jsonData.totalPrice).to.eql(requestData.totalPrice);\r",
+													"    pm.expect(jsonData.userId).to.eql(requestData.userId);\r",
+													"    pm.expect(jsonData.packageId).to.eql(requestData.packageId);\r",
+													"    pm.expect(jsonData.reservationStatus).to.eql(requestData.reservationStatus);\r",
+													"\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-a4dedbaf-5a25-42d9-b148-c25846bd2ab2",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"totalTravelers\": 3,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 15,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/{{reservationId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Reservation",
+												"UpdateReservation",
+												"{{reservationId}}"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-00c5aa29-2f31-4021-b535-ab68115e5f06",
+											"name": "UpdateReservation",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"totalTravelers\": 3,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 15,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/{{reservationId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Reservation",
+														"UpdateReservation",
+														"{{reservationId}}"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "223"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:48:08 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"reservationId\": 6,\n    \"totalTravelers\": 3,\n    \"dateOfReservation\": \"2025-09-14\",\n    \"totalPrice\": 15,\n    \"userId\": 10,\n    \"packageId\": 1,\n    \"reservationStatus\": \"reservisano\",\n    \"payments\": [],\n    \"reviews\": []\n}"
+										}
+									]
+								},
+								{
+									"name": "UsersReservations",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "981a4175-23b1-479d-8b2c-6f37d8d2d173",
+												"exec": [
+													"const responseStatus = pm.response.code;\r",
+													"\r",
+													"pm.test(\"Status code is 404 or 200\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([404, 200]);\r",
+													"});\r",
+													"\r",
+													"if (responseStatus === 200) {\r",
+													"    const jsonData = pm.response.json();\r",
+													"\r",
+													"    // Response must be an array\r",
+													"    pm.test(\"Response is JSON (array)\", function () {\r",
+													"        pm.expect(jsonData).to.be.an('array');\r",
+													"    });\r",
+													"\r",
+													"    if (jsonData.length > 0) {\r",
+													"        // Each reservation has required fields\r",
+													"        pm.test(\"Each reservation has required fields\", function () {\r",
+													"            jsonData.forEach(item => {\r",
+													"                pm.expect(item).to.have.property(\"reservationId\");\r",
+													"                pm.expect(item).to.have.property(\"packageId\");\r",
+													"                pm.expect(item).to.have.property(\"userId\");\r",
+													"                pm.expect(item).to.have.property(\"totalTravelers\");\r",
+													"                pm.expect(item).to.have.property(\"totalPrice\");\r",
+													"                pm.expect(item).to.have.property(\"reservationStatus\");\r",
+													"            });\r",
+													"        });\r",
+													"\r",
+													"        // data types are valid\r",
+													"        pm.test(\"Reservation fields have correct data types\", function () {\r",
+													"            jsonData.forEach(item => {\r",
+													"                pm.expect(item.reservationId).to.be.a(\"number\");\r",
+													"                pm.expect(item.packageId).to.be.a(\"number\");\r",
+													"                pm.expect(item.userId).to.be.a(\"number\");\r",
+													"                pm.expect(item.totalTravelers).to.be.a(\"number\");\r",
+													"                pm.expect(item.totalPrice).to.be.a(\"number\");\r",
+													"                pm.expect(item.reservationStatus).to.be.a(\"string\"); \r",
+													"            });\r",
+													"        });\r",
+													"\r",
+													"        // Each reservation belongs to the logged-in user\r",
+													"        pm.test(\"Each reservation belongs to the logged-in user\", function () {\r",
+													"            const loggedInUserId = parseInt(pm.environment.get(\"endUserId\"), 10);\r",
+													"            jsonData.forEach(item => {\r",
+													"                pm.expect(item.userId).to.eql(loggedInUserId);\r",
+													"            });\r",
+													"        });\r",
+													"\r",
+													"        //checks if user has reservations\r",
+													"        pm.test(\"User has at least one reservation\", function () {\r",
+													"            pm.expect(jsonData.length).to.be.above(0);\r",
+													"        });\r",
+													"\r",
+													"    } else {\r",
+													"        // user has no reservations\r",
+													"        pm.test(\"User has no reservations\", function () {\r",
+													"            pm.expect(jsonData.length).to.eql(0);\r",
+													"        });\r",
+													"    }\r",
+													"} else {\r",
+													"    // Handle non-JSON responses gracefully\r",
+													"    pm.test(\"Response is not JSON when reservations are not found\", function () {\r",
+													"        pm.expect(pm.response.text()).to.eql(\"No reservations found for this user.\");\r",
+													"    });\r",
+													"}\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-216c1c37-8861-4af3-a07a-9cfcda40f7b4",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Reservation/GetReservationsByUserId/{{endUserId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Reservation",
+												"GetReservationsByUserId",
+												"{{endUserId}}"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-c8464b5e-7226-470b-adf4-118b25cac263",
+											"name": "UsersReservations",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Reservation/GetReservationsByUserId/{{endUserId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Reservation",
+														"GetReservationsByUserId",
+														"{{endUserId}}"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:47:24 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "No reservations found for this user."
+										}
+									]
+								},
+								{
+									"name": "DeleteReservation",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "8217a4ac-cf91-428d-9fb8-02597f29b136",
+												"exec": [
+													"pm.test(\"Response is JSON\", function () {\r",
+													"    pm.expect(pm.response.json());\r",
+													"});\r",
+													"\r",
+													"\r",
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"//Response time is below 1000ms\r",
+													"pm.test(\"Response time is below 1000ms\", function(){\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"})\r",
+													"\r",
+													"//check API Url endpoint is valid\r",
+													"pm.test(\"API URL endpoint is valid\", function(){\r",
+													"    pm.expect(pm.request.url.toString()).to.eql(`${pm.environment.get('baseUrl')}/api/Reservation/DeleteReservation/${pm.environment.get('reservationId')}`);\r",
+													"})\r",
+													"\r",
+													"//check header content type\r",
+													"pm.test(\"Content-Type is application/json\", function(){\r",
+													"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+													"})\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-c2a91379-2b99-472c-b064-a0bb70393444",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Reservation/DeleteReservation/{{reservationId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Reservation",
+												"DeleteReservation",
+												"{{reservationId}}"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-2fcec560-dfdd-4fad-9343-b028eb0a77ff",
+											"name": "DeleteReservation",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Reservation/DeleteReservation/{{reservationId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Reservation",
+														"DeleteReservation",
+														"{{reservationId}}"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "226"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:48:18 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"reservationId\": 6,\n    \"totalTravelers\": 3,\n    \"dateOfReservation\": \"2025-09-14\",\n    \"totalPrice\": 15,\n    \"userId\": 10,\n    \"packageId\": 1,\n    \"reservationStatus\": \"reservisano\",\n    \"payments\": [],\n    \"reviews\": []\n}"
+										}
+									]
+								}
+							],
+							"id": "48284099-49d0aba0-0a3b-460f-a7a1-bee81b2282fe"
 						}
 					],
 					"id": "48284099-dc616134-2c4c-4750-97d7-954be60c4f24"
