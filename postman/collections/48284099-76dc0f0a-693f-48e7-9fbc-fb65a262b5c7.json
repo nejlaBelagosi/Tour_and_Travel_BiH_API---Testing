@@ -3095,7 +3095,7 @@
 									]
 								},
 								{
-									"name": "AddIntoFavorites - unauthorized Copy",
+									"name": "AddIntoFavorites - duplicated",
 									"event": [
 										{
 											"listen": "test",
