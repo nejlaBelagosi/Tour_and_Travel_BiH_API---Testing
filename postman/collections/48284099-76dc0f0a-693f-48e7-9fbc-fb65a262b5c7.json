@@ -4336,7 +4336,7 @@
 							"name": "Account",
 							"item": [
 								{
-									"name": "UpdateAccount",
+									"name": "UpdateAccount-Invalid accountId",
 									"event": [
 										{
 											"listen": "test",
