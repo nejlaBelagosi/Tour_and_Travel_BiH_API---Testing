@@ -3590,6 +3590,21 @@
 							"item": [
 								{
 									"name": "LeaveReview - unauthorized",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "65eaf9a0-e0e0-4e6c-9e13-2765e69810f8",
+												"exec": [
+													"pm.test(\"Response to have status 401\", function(){\r",
+													"    pm.response.to.have.status(401);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-b8cff5ac-35c4-4efd-9d68-618cdc4ec0d7",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
@@ -3618,7 +3633,60 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-5b1f0328-354e-42bb-94ce-b6646fc807b8",
+											"name": "LeaveReview",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"postDate\": \"2025-09-16\",\r\n  \"reviewComment\": \"Sve 5!!!!\",\r\n  \"rating\": 5,\r\n  \"userId\": {{endUserId}},\r\n  \"reservationId\": {{reservationId}}\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Review/PostReview",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Review",
+														"PostReview"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "187"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:22:23 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-eafd7d3f65036172ffebf9f8855a2bf5-b3d3b21989d51ef3-00\"\n}"
+										}
+									]
 								},
 								{
 									"name": "LeaveReview Copy",
