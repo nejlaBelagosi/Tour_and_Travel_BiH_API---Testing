@@ -1,0 +1,4 @@
+// Invalid accountId
+pm.test("Status code is 400", function () {
+    pm.response.to.have.status(400);
+});
