@@ -4568,7 +4568,7 @@
 									]
 								},
 								{
-									"name": "DeleteAccount",
+									"name": "DeleteAccount -nonexistent accountId",
 									"event": [
 										{
 											"listen": "test",
