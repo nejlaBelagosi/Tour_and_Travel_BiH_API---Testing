@@ -1636,7 +1636,7 @@
 													"\r",
 													"//checks if response has expected id\r",
 													"pm.test(\"Response has expected id\", function () {\r",
-													"    pm.expect(responseData.id).to.eql(requestData.id);\r",
+													"    pm.expect(jsonData.id).to.eql(requestData.id);\r",
 													"});\r",
 													"\r",
 													"//checks if fields are edited\r",
