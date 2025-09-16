@@ -2742,7 +2742,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId",
+											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId/{{tourPackageId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -2750,7 +2750,8 @@
 												"api",
 												"Review",
 												"GetReviewByPackageId",
-												"GetReviewByPackageId"
+												"GetReviewByPackageId",
+												"{{tourPackageId}}"
 											]
 										}
 									},
