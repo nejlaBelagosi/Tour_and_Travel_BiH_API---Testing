@@ -2733,7 +2733,7 @@
 									"response": []
 								},
 								{
-									"name": "New Request",
+									"name": "GetReviewByPackageId",
 									"id": "48284099-1c1188ca-09ff-40eb-a465-addb72b18e1f",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
