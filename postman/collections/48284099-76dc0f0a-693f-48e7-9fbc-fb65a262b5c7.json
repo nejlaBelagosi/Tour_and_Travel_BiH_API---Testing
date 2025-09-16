@@ -4623,6 +4623,63 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "DeleteAccount Copy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "aac3346f-ab78-4c1e-8655-2f95d1366a27",
+												"exec": [
+													"//non-existent accountId\r",
+													"pm.test(\"Status code is 404\", function(){\r",
+													"    pm.response.to.have.status(404);\r",
+													" });\r",
+													"    "
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-db99f9a9-980f-433c-a6b2-69af364ca7a5",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Account",
+												"DeleteAccount",
+												"{{accountId}}"
+											]
+										}
+									},
+									"response": []
 								}
 							],
 							"id": "48284099-d5d7f75b-1c3b-4344-8759-ec80263444f4"
