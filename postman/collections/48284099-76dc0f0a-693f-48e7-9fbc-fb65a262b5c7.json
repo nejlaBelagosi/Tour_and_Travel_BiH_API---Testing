@@ -2443,7 +2443,9 @@
 													"//check the error message in the response\r",
 													"pm.test(\"Error message is present\", function(){\r",
 													"    pm.expect(jsonData.message || jsonData.error).to.exist;\r",
-													"})"
+													"});\r",
+													"\r",
+													""
 												],
 												"type": "text/javascript",
 												"packages": {}
