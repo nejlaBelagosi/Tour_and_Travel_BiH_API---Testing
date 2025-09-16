@@ -4010,6 +4010,65 @@
 											"cookie": [],
 											"responseTime": null,
 											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-925bcc232e169c6c43bfc1f3d3dca9a3-41c0c1d1200b4f7d-00\"\n}"
+										},
+										{
+											"id": "48284099-b770b9a8-064d-4fcf-b38c-631368e23299",
+											"name": "UpdateReview Copy",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"postDate\": \"2025-09-16\",\r\n  \"reviewComment\": \"Sve 5!!!!\",\r\n  \"rating\": 5,\r\n  \"userId\": {{endUserId}},\r\n  \"reservationId\": {{reservationId}}\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Review/UpdateReview/{{reviewId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Review",
+														"UpdateReview",
+														"{{reviewId}}"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:28:05 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "Review not found!"
 										}
 									]
 								},
