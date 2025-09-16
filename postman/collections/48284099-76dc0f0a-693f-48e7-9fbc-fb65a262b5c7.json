@@ -3221,7 +3221,14 @@
 									},
 									"request": {
 										"auth": {
-											"type": "noauth"
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
 										},
 										"method": "DELETE",
 										"header": [
