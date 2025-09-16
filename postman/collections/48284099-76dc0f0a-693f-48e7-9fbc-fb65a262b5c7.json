@@ -4403,7 +4403,7 @@
 									"response": []
 								},
 								{
-									"name": "UpdateAccount Copy",
+									"name": "UpdateAccount - invalid accountId",
 									"event": [
 										{
 											"listen": "test",
@@ -4465,7 +4465,67 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-8e142842-f232-44dd-b299-6b8dde3d50b0",
+											"name": "UpdateAccount Copy",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"image.png\",\r\n  \"userId\": {{endUserId}},\r\n  \"accountTypeId\": 2\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Account",
+														"UpdateAccount",
+														"{{accountId}}"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:41:22 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "Account not found!"
+										}
+									]
 								},
 								{
 									"name": "UserLogout",
