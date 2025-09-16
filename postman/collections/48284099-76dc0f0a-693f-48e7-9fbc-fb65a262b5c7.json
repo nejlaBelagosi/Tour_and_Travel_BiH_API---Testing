@@ -4718,15 +4718,14 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
+											"raw": "{{baseUrl}}/api/Account/DeleteAccount",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
 												"Account",
-												"DeleteAccount",
-												"{{accountId}}"
+												"DeleteAccount"
 											]
 										}
 									},
