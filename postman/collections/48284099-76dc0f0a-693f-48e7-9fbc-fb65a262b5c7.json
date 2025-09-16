@@ -4496,7 +4496,13 @@
 											]
 										},
 										"method": "DELETE",
-										"header": [],
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
 										"url": {
 											"raw": "{{baseUrl}}/auth/logout",
 											"host": [
