@@ -4683,11 +4683,10 @@
 											"script": {
 												"id": "aac3346f-ab78-4c1e-8655-2f95d1366a27",
 												"exec": [
-													"//non-existent accountId\r",
-													"pm.test(\"Status code is 404\", function(){\r",
-													"    pm.response.to.have.status(404);\r",
-													" });\r",
-													"    "
+													"//Missing accountId Path Variable\r",
+													"pm.test(\"Statuse code i 400 or 404\", function(){\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400,404]);\r",
+													"});"
 												],
 												"type": "text/javascript",
 												"packages": {}
