@@ -4461,7 +4461,7 @@
 									]
 								},
 								{
-									"name": "UserLogout",
+									"name": "UserLogout - alreadyLoggedout",
 									"event": [
 										{
 											"listen": "test",
