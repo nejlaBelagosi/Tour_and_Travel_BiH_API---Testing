@@ -4569,6 +4569,23 @@
 								},
 								{
 									"name": "DeleteAccount",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "aac3346f-ab78-4c1e-8655-2f95d1366a27",
+												"exec": [
+													"//non-existent accountId\r",
+													"pm.test(\"Status code is 404\", function(){\r",
+													"    pm.response.to.have.status(404);\r",
+													" });\r",
+													"    "
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-31618f2b-422c-45d2-852c-cd2c1b779305",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
