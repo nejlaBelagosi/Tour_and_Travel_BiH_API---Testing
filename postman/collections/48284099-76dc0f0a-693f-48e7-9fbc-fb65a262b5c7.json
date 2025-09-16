@@ -3498,30 +3498,6 @@
 									]
 								},
 								{
-									"name": "UsersReservations",
-									"id": "48284099-67c83931-26bc-417f-8bde-093c621fe64b",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/GetReservationByUserId/{{endUserId}}",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Reservation",
-												"GetReservationByUserId",
-												"{{endUserId}}"
-											]
-										}
-									},
-									"response": []
-								},
-								{
 									"name": "DeleteReservation",
 									"event": [
 										{
@@ -3559,7 +3535,52 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-7ffc604b-7d42-43b0-8c05-f05768fc0927",
+											"name": "DeleteReservation",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Reservation/DeleteReservation/{{reservationId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Reservation",
+														"DeleteReservation",
+														"{{reservationId}}"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "187"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:20:35 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-65ee6bc0cede6e9f08a7b2623ea080b1-a49545fe2b71af00-00\"\n}"
+										}
+									]
 								}
 							],
 							"id": "48284099-132a16d7-f16f-464b-bfb9-eedf7fb769ca"
