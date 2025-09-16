@@ -2285,7 +2285,7 @@
 					"name": "Negative Endpoints",
 					"item": [
 						{
-							"name": "New Request",
+							"name": "Register User",
 							"id": "48284099-309a1aec-611c-4d13-8a97-4116ef048dda",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -2308,7 +2308,7 @@
 							"response": []
 						},
 						{
-							"name": "New Request",
+							"name": "Login",
 							"id": "48284099-f9a6fc76-3161-4a05-92a6-e8cfc6323fa3",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
