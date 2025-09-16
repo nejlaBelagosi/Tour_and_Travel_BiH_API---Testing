@@ -4176,7 +4176,52 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-379108aa-bc85-4f90-ad50-04614750c47a",
+											"name": "DeleteReview",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Review/DeleteReview/{{reviewId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Review",
+														"DeleteReview",
+														"{{reviewId}}"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "187"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:31:49 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-09fd6347d21c6c126c3a369a9d6268d2-97403819fc7a2835-00\"\n}"
+										}
+									]
 								},
 								{
 									"name": "DeleteReview-nonexistent reviewId",
