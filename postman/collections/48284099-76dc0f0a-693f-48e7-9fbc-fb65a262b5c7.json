@@ -2444,7 +2444,7 @@
 													"\r",
 													"//check the error message in the response\r",
 													"pm.test(\"Error message is present\", function(){\r",
-													"    pm.expect(pm.response.tex()).not.to.be.empty;\r",
+													"    pm.expect(pm.response.text()).not.to.be.empty;\r",
 													"});\r",
 													"\r",
 													""
@@ -2482,7 +2482,60 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-c2ff666a-e8ed-43aa-a908-8ce170cec84b",
+											"name": "Register User",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"name\": \"Nejla\",\r\n  \"surname\": \"Belagoši\",\r\n  \"address\": \"Sarajevo\",\r\n  \"dateOfBirth\": \"1995-06-10\",\r\n  \"contact\": \"+38762166353\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"nejla95\",\r\n  \"userPassword\": \"Lozinka123\",\r\n  \"userImage\": null\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Users/RegisterUser",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Users",
+														"RegisterUser"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "366"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 16:32:53 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"errors\": {\n        \"Email\": [\n            \"The Email field is required.\"\n        ],\n        \"UserImage\": [\n            \"The UserImage field is required.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-844e51f5dd67f26da3293b89fd4d4973-f215ed8d0bb65248-00\"\n}"
+										}
+									]
 								},
 								{
 									"name": "Register User - invalid email",
