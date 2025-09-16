@@ -3968,52 +3968,8 @@
 									},
 									"response": [
 										{
-											"id": "48284099-08efa2b9-a18c-4ed3-8123-1fa75f0ced71",
-											"name": "UpdateReview",
-											"originalRequest": {
-												"method": "PUT",
-												"header": [],
-												"url": {
-													"raw": "{{baseUrl}}/api/Review/UpdateReview/{{reviewId}}",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"api",
-														"Review",
-														"UpdateReview",
-														"{{reviewId}}"
-													]
-												}
-											},
-											"status": "Unauthorized",
-											"code": 401,
-											"_postman_previewlanguage": null,
-											"header": [
-												{
-													"key": "Content-Length",
-													"value": "187"
-												},
-												{
-													"key": "Content-Type",
-													"value": "application/problem+json; charset=utf-8"
-												},
-												{
-													"key": "Date",
-													"value": "Tue, 16 Sep 2025 17:26:11 GMT"
-												},
-												{
-													"key": "Server",
-													"value": "Kestrel"
-												}
-											],
-											"cookie": [],
-											"responseTime": null,
-											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-925bcc232e169c6c43bfc1f3d3dca9a3-41c0c1d1200b4f7d-00\"\n}"
-										},
-										{
 											"id": "48284099-b770b9a8-064d-4fcf-b38c-631368e23299",
-											"name": "UpdateReview Copy",
+											"name": "UpdateReview-nonexistent reviewId",
 											"originalRequest": {
 												"method": "PUT",
 												"header": [
