@@ -1806,7 +1806,7 @@
 									]
 								},
 								{
-									"name": "ViewSingleReview",
+									"name": "GetReviewByPackageId",
 									"event": [
 										{
 											"listen": "test",
