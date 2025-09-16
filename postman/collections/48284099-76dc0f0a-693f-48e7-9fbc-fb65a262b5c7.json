@@ -3144,6 +3144,55 @@
 									"response": []
 								},
 								{
+									"name": "DeleteFromFavorite - unauthorized Copy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2340732c-a7f3-4758-89bf-2f84934a1a63",
+												"exec": [
+													"// expect status code 401\r",
+													"pm.test(\"Response to have status 401\", function(){\r",
+													"    pm.response.to.have.status(401);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-a25ca107-5e24-4dcf-ad03-15c323c7525b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Favorite",
+												"DeleteFavorite",
+												"{{favoriteItemId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "FavoriteItems",
 									"id": "48284099-90b5f4d8-512f-4968-9830-d30bb79f64a2",
 									"protocolProfileBehavior": {
