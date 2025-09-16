@@ -46,6 +46,7 @@ pm.test("packageId matches request", function () {
 });
 
 // API Response time
-pm.test("API payload size is within accepted limits", function(){
+pm.test("API response time is within accepted limits", function(){
     pm.expect(pm.response.responseTime).to.be.below(1024);
 });
+
