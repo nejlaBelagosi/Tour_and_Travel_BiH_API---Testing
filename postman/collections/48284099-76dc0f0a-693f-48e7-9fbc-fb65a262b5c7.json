@@ -2709,7 +2709,7 @@
 									"response": [
 										{
 											"id": "48284099-a1cf6ab6-1fde-49e5-bb16-62f9ec4cbbfe",
-											"name": "Register User - invalid email Copy",
+											"name": "Register User - duplicate username",
 											"originalRequest": {
 												"method": "POST",
 												"header": [],
