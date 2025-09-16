@@ -695,7 +695,7 @@
 									]
 								},
 								{
-									"name": "DeleteFavoriteItem",
+									"name": "DeleteFromFavorite",
 									"event": [
 										{
 											"listen": "test",
@@ -2475,12 +2475,105 @@
 						},
 						{
 							"name": "Favorite Items",
-							"item": [],
+							"item": [
+								{
+									"name": "AddIntoFavorites",
+									"id": "48284099-4e3ed844-7962-4d65-b5e0-5e97008642b0",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Favorite/PostFavorite",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Favorite",
+												"PostFavorite"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DeleteFromFavorite",
+									"id": "48284099-8b9a2720-03dd-44dc-b759-94515dfd7bc4",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Favorite",
+												"DeleteFavorite",
+												"{{favoriteItemId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FavoriteItems",
+									"id": "48284099-90b5f4d8-512f-4968-9830-d30bb79f64a2",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Favorite/GetFavorite",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Favorite",
+												"GetFavorite"
+											]
+										}
+									},
+									"response": []
+								}
+							],
 							"id": "48284099-f2f3d75c-bb23-4a9c-b240-b09f3ccaac78"
 						},
 						{
 							"name": "Reservations",
-							"item": [],
+							"item": [
+								{
+									"name": "MakeReservation",
+									"id": "48284099-2325eaca-8110-409c-baee-88b7668967b9",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": []
+									},
+									"response": []
+								}
+							],
 							"id": "48284099-132a16d7-f16f-464b-bfb9-eedf7fb769ca"
 						},
 						{
