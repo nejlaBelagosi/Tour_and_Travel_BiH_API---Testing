@@ -3690,6 +3690,22 @@
 								},
 								{
 									"name": "LeaveReview",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "b5f8b89b-fd33-4673-9e5e-5f7a2aeda25d",
+												"exec": [
+													"// reservation status is not \"zavrseno\"\r",
+													"pm.test(\"Response status 400\", function(){\r",
+													"    pm.response.to.have.status(400);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-0abac2d6-f37b-4b7c-b0ca-2f7488c32320",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
