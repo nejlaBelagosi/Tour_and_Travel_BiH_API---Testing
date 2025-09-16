@@ -2581,7 +2581,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"name\": \"Nejla\",\r\n  \"surname\": \"Belagoši\",\r\n  \"address\": \"Sarajevo\",\r\n  \"dateOfBirth\": \"1995-06-10\",\r\n  \"contact\": \"+38762166353\",\r\n  \"email\": \"invalid-email\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"nejla95\",\r\n  \"userPassword\": \"Lozinka123\",\r\n  \"userImage\": null\r\n}",
+											"raw": "{\r\n  \"name\": \"Nejla\",\r\n  \"surname\": \"Belagoši\",\r\n  \"address\": \"Sarajevo\",\r\n  \"dateOfBirth\": \"1995-06-10\",\r\n  \"contact\": \"+38762166353\",\r\n  \"email\": \"invalid-email\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"nejlabe3\",\r\n  \"userPassword\": \"Lozinka123\",\r\n  \"userImage\": null\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
