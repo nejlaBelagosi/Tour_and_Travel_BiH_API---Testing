@@ -3304,29 +3304,6 @@
 											"body": "Favorite not found in Database."
 										}
 									]
-								},
-								{
-									"name": "FavoriteItems",
-									"id": "48284099-90b5f4d8-512f-4968-9830-d30bb79f64a2",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{baseUrl}}/api/Favorite/GetFavorite",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Favorite",
-												"GetFavorite"
-											]
-										}
-									},
-									"response": []
 								}
 							],
 							"id": "48284099-f2f3d75c-bb23-4a9c-b240-b09f3ccaac78"
