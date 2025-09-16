@@ -18,6 +18,7 @@ It is designed for **API testing, CI/CD integration, and documentation**.
 Tour_and_Travel_BiH_API---Testing/
 ├── Tests/
 │   └── Positive Endpoints/
+│   └── Negative Tests/
 ├── postman/
 │   ├── collections/
 ├── reports/
