@@ -3413,7 +3413,7 @@
 									]
 								},
 								{
-									"name": "MakeReservation Copy",
+									"name": "MakeReservation - non-existen packageId",
 									"event": [
 										{
 											"listen": "test",
