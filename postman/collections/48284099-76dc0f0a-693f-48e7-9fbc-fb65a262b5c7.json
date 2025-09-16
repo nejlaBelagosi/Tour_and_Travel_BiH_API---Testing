@@ -2995,6 +2995,22 @@
 							"item": [
 								{
 									"name": "AddIntoFavorites - without authentication",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "e54f77a7-bb59-4e16-ad41-c3e55a189181",
+												"exec": [
+													"//expect status 401\r",
+													"pm.test(\"Response status to be 401\", function(){\r",
+													"    pm.expect(pm.response).to.have.status(401);\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-4e3ed844-7962-4d65-b5e0-5e97008642b0",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
