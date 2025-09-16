@@ -1565,7 +1565,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n  \"postDate\": \"2025-09-16\",\r\n  \"reviewComment\": \"Ovo je bilo odlicno!\",\r\n  \"rating\": 4,\r\n  \"userId\": {{endUserId}},\r\n  \"reservationId\": {{reservationId}}\r\n}",
+											"raw": "{\r\n  \"postDate\": \"2025-09-16\",\r\n  \"reviewComment\": \"Sve 5!\",\r\n  \"rating\": 5,\r\n  \"userId\": {{endUserId}},\r\n  \"reservationId\": {{reservationId}}\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
