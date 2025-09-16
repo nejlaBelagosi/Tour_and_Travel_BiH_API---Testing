@@ -2285,6 +2285,11 @@
 					"name": "Negative Endpoints",
 					"item": [
 						{
+							"name": "Create User & Login",
+							"item": [],
+							"id": "48284099-88be8ee6-af8f-4816-a63c-c632e8b10960"
+						},
+						{
 							"name": "Register User",
 							"id": "48284099-309a1aec-611c-4d13-8a97-4116ef048dda",
 							"protocolProfileBehavior": {
