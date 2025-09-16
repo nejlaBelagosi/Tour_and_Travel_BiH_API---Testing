@@ -216,6 +216,202 @@
 									]
 								},
 								{
+									"name": "RegisterUserAccount-status Copy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "df99e881-2e8d-48d6-800b-8ae4d6135910",
+												"exec": [
+													"const requestBody = pm.request.body.raw;\r",
+													"const requestData = JSON.parse(requestBody);\r",
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"// Store accountId from newAccount\r",
+													"if (jsonData.newAccount && jsonData.newAccount.accountId) {\r",
+													"    pm.environment.set(\"accountId\", jsonData.newAccount.accountId);\r",
+													"    console.log(\"accountId stored from newAccount:\", jsonData.newAccount.accountId);\r",
+													"}\r",
+													"\r",
+													"// Store username \r",
+													"if (jsonData.newAccount && jsonData.newAccount.username){\r",
+													"    pm.environment.set(\"username\", jsonData.newAccount.username);\r",
+													"    console.log(\"username stored from newAccount\", jsonData.newAccount.username);\r",
+													"}\r",
+													"\r",
+													"//store user password\r",
+													"if (jsonData.newAccount && jsonData.newAccount.userPassword){\r",
+													"    pm.environment.set(\"userPassword\", jsonData.newAccount.userPassword);\r",
+													"    console.log(\"User password stored from newAccount\", jsonData.newAccount.userPassword);\r",
+													"}\r",
+													"\r",
+													"//checks API status\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"//checks JSON response\r",
+													"pm.test(\"Response is JSON\", function () {\r",
+													"    pm.expect(pm.response.json()).to.not.be.null;\r",
+													"});\r",
+													"\r",
+													"//checks if API response headers are valid\r",
+													"pm.test(\"check if API response headers are valid\", function () {\r",
+													"    pm.expect(pm.response.headers.get(\"Content-type\")).to.include(\"application/json\");\r",
+													"});\r",
+													"\r",
+													"//check if API respons time is below 500ms\r",
+													"pm.test(\"Response time is below 500ms\", function(){\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+													"});\r",
+													"\r",
+													"//checks if API method is Valid\r",
+													"pm.test(\"API method is valid\", function(){\r",
+													"    pm.expect(pm.request.method).to.eql(\"POST\");\r",
+													"});\r",
+													"\r",
+													"//checks if API endpoint URL is valid\r",
+													"pm.test(\"URL Endpoint is valid\", function(){\r",
+													"    const baseUrl = pm.variables.get(\"baseUrl\");\r",
+													"    pm.expect(pm.request.url.toString()).to.eql(`${baseUrl}/api/Users/RegisterUser`);\r",
+													"});\r",
+													"\r",
+													"//checks required fields\r",
+													"pm.test(\"Response contains required user properties\", function() {\r",
+													"    pm.expect(jsonData).to.have.property(\"newUser\");\r",
+													"    pm.expect(jsonData).to.have.property(\"newAccount\");\r",
+													"\r",
+													"    const newUser = jsonData.newUser;\r",
+													"    const newAccount = jsonData.newAccount;\r",
+													"\r",
+													"    pm.expect(newUser).to.have.property(\"name\");\r",
+													"    pm.expect(newUser).to.have.property(\"surname\");\r",
+													"    pm.expect(newUser).to.have.property(\"address\");\r",
+													"    pm.expect(newUser).to.have.property(\"dateOfBirth\");\r",
+													"    pm.expect(newUser).to.have.property(\"contact\");\r",
+													"    pm.expect(newUser).to.have.property(\"email\");\r",
+													"\r",
+													"    pm.expect(newAccount).to.have.property(\"accountTypeId\");\r",
+													"    pm.expect(newAccount).to.have.property(\"username\");\r",
+													"    pm.expect(newAccount).to.have.property(\"userPassword\");\r",
+													"    pm.expect(newAccount).to.have.property(\"userImage\");\r",
+													"});\r",
+													"\r",
+													"//checks are fields valid\r",
+													"pm.test(\"Response fields match request data\", function() {\r",
+													"    const newUser = jsonData.newUser;\r",
+													"    const newAccount = jsonData.newAccount;\r",
+													"\r",
+													"    pm.expect(newUser.email).to.eql(requestData.email);\r",
+													"    pm.expect(newUser.contact).to.eql(requestData.contact);\r",
+													"    pm.expect(newAccount.userImage).to.eql(requestData.userImage);\r",
+													"});\r",
+													"\r",
+													"//checks email format\r",
+													"pm.test(\"Email format is valid\", function() {\r",
+													"    const newUser = jsonData.newUser;\r",
+													"    pm.expect(newUser.email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/);\r",
+													"});\r",
+													"//checks if picture format valid\r",
+													"pm.test(\"Picture format is valid\", function() {\r",
+													"    const newAccount = jsonData.newAccount;\r",
+													"    pm.expect(newAccount.userImage).to.match(/\\w+\\.(jpg|png)$/i);\r",
+													"});\r",
+													"//checks if API payload size is within accepted limits 1024\r",
+													"pm.test(\"API payload is within acceptable size\", function(){\r",
+													"    pm.expect(pm.request.body.raw.length).to.be.below(1024);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-10b8daef-d9ed-40c5-82d7-992892c410e8",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"{{$randomFirstName}}\",\r\n  \"surname\": \"{{$randomLastName}}\",\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"dateOfBirth\": \"1998-09-14\",\r\n  \"contact\": \"{{$randomPhoneNumber}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"user.jpg\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Users/RegisterUser",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Users",
+												"RegisterUser"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-4e6711f5-a121-4a0d-b85c-599d7626e4ab",
+											"name": "RegisterUserAccount",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"name\": \"{{$randomFirstName}}\",\r\n  \"surname\": \"{{$randomLastName}}\",\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"dateOfBirth\": \"1998-09-14\",\r\n  \"contact\": \"{{$randomPhoneNumber}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"user.jpg\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Users/RegisterUser",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Users",
+														"RegisterUser"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "1171"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:44:20 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"newUser\": {\n        \"userId\": 10,\n        \"name\": \"Lonny\",\n        \"surname\": \"Cruickshank\",\n        \"address\": \"50048 Derrick Square\",\n        \"dateOfBirth\": \"09-14-1998\",\n        \"contact\": \"596-475-8892\",\n        \"email\": \"Camille_Casper25@gmail.com\",\n        \"accounts\": [\n            {\n                \"accountId\": 9,\n                \"username\": \"Mandy_Smitham69\",\n                \"userPassword\": \"C4Rzmk01KSch7gk\",\n                \"userImage\": \"user.jpg\",\n                \"userId\": 10,\n                \"accountTypeId\": 2,\n                \"authenticationTokens\": []\n            }\n        ],\n        \"favorites\": [],\n        \"reservations\": [],\n        \"reviews\": []\n    },\n    \"newAccount\": {\n        \"accountId\": 9,\n        \"username\": \"Mandy_Smitham69\",\n        \"userPassword\": \"C4Rzmk01KSch7gk\",\n        \"userImage\": \"user.jpg\",\n        \"userId\": 10,\n        \"accountTypeId\": 2,\n        \"authenticationTokens\": [],\n        \"user\": {\n            \"userId\": 10,\n            \"name\": \"Lonny\",\n            \"surname\": \"Cruickshank\",\n            \"address\": \"50048 Derrick Square\",\n            \"dateOfBirth\": \"09-14-1998\",\n            \"contact\": \"596-475-8892\",\n            \"email\": \"Camille_Casper25@gmail.com\",\n            \"accounts\": [],\n            \"favorites\": [],\n            \"reservations\": [],\n            \"reviews\": []\n        }\n    }\n}"
+										}
+									]
+								},
+								{
 									"name": "UserLogin",
 									"event": [
 										{
