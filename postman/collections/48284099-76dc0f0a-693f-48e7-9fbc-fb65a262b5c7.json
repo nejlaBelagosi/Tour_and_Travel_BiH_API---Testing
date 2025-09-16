@@ -4231,8 +4231,8 @@
 											"script": {
 												"id": "98e947fe-ed12-4da4-af76-ca9ccc7718aa",
 												"exec": [
-													"pm.test(\"Status code is 401\", function () {\r",
-													"    pm.response.to.have.status(401);\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
 													"});"
 												],
 												"type": "text/javascript",
@@ -4276,7 +4276,58 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-88d92865-9e7c-4d23-b795-111140f90503",
+											"name": "DeleteReview Copy",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Review/DeleteReview/{{reviewId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Review",
+														"DeleteReview",
+														"{{reviewId}}"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:32:39 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "Review is not found in Database."
+										}
+									]
 								}
 							],
 							"id": "48284099-8cba7d47-466c-4afa-97b3-51dd0ccddded"
