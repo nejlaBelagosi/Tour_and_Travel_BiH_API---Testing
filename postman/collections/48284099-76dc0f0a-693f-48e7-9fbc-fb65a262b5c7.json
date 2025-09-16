@@ -2286,53 +2286,59 @@
 					"item": [
 						{
 							"name": "Create User & Login",
-							"item": [],
+							"item": [
+								{
+									"name": "Register User",
+									"id": "48284099-309a1aec-611c-4d13-8a97-4116ef048dda",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Users/RegisterUser",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Users",
+												"RegisterUser"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Login",
+									"id": "48284099-f9a6fc76-3161-4a05-92a6-e8cfc6323fa3",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"response": []
+								}
+							],
 							"id": "48284099-88be8ee6-af8f-4816-a63c-c632e8b10960"
 						},
 						{
-							"name": "Register User",
-							"id": "48284099-309a1aec-611c-4d13-8a97-4116ef048dda",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/api/Users/RegisterUser",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Users",
-										"RegisterUser"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Login",
-							"id": "48284099-f9a6fc76-3161-4a05-92a6-e8cfc6323fa3",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{baseUrl}}/auth/login",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"response": []
+							"name": "New Folder",
+							"item": [],
+							"id": "48284099-f2f3d75c-bb23-4a9c-b240-b09f3ccaac78"
 						}
 					],
 					"id": "48284099-41443471-9c2b-4410-bcf7-dc9c766f9ceb"
