@@ -4516,7 +4516,56 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-ecb7a263-9757-40bf-864b-ceee8d6cf6a8",
+											"name": "UserLogout - alreadyLoggedout",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/auth/logout",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"auth",
+														"logout"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:46:40 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "Token is not found in Database."
+										}
+									]
 								},
 								{
 									"name": "DeleteAccount",
