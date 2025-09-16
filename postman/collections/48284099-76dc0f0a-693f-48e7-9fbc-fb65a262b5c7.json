@@ -3689,7 +3689,7 @@
 									]
 								},
 								{
-									"name": "LeaveReview-notFinishedReservationstatus",
+									"name": "LeaveReview",
 									"id": "48284099-0abac2d6-f37b-4b7c-b0ca-2f7488c32320",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
