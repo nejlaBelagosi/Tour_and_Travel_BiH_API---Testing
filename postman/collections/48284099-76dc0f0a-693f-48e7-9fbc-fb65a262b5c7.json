@@ -1623,7 +1623,14 @@
 													"//check request URL\r",
 													"pm.test(\"Check request URL\", function(){\r",
 													"    pm.expect(pm.request.url.toString()).to.include(`${pm.environment.get('baseUrl')}/api/Review/UpdateReview/${pm.environment.get('reviewId')}`);\r",
-													"})"
+													"})\r",
+													"\r",
+													"  const requestData = JSON.parse(pm.request.body.raw);\r",
+													"\r",
+													"//checks if response has expected id\r",
+													"pm.test(\"Response has expected id\", function () {\r",
+													"    pm.expect(responseData.id).to.eql(requestData.id);\r",
+													"});"
 												],
 												"type": "text/javascript",
 												"packages": {}
