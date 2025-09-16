@@ -4622,7 +4622,58 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-4bbfdfbd-4dc7-44eb-a984-f637c6373e87",
+											"name": "DeleteAccount",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Account",
+														"DeleteAccount",
+														"{{accountId}}"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:51:49 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "Account is not found in Database."
+										}
+									]
 								},
 								{
 									"name": "DeleteAccount Copy",
