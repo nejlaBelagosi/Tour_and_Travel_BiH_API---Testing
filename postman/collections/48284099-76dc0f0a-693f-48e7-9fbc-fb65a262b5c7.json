@@ -3018,6 +3018,15 @@
 									"request": {
 										"method": "POST",
 										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"packageId\": 1,\r\n  \"userId\": {{endUserId}}\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
 										"url": {
 											"raw": "{{baseUrl}}/api/Favorite/PostFavorite",
 											"host": [
@@ -3030,7 +3039,60 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-0376fbcd-d42c-45b7-8ee7-0e4a3e05c932",
+											"name": "AddIntoFavorites",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"packageId\": 1,\r\n  \"userId\": {{endUserId}}\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Favorite/PostFavorite",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Favorite",
+														"PostFavorite"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "187"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 16:48:53 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-2749979f11c2acaef0d32c2c84a09eaf-a07519f8f8b8303b-00\"\n}"
+										}
+									]
 								},
 								{
 									"name": "DeleteFromFavorite",
