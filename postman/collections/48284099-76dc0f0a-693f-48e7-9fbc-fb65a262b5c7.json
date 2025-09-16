@@ -2994,7 +2994,7 @@
 							"name": "Favorite Items",
 							"item": [
 								{
-									"name": "AddIntoFavorites - without authentication",
+									"name": "AddIntoFavorites - unauthorized",
 									"event": [
 										{
 											"listen": "test",
