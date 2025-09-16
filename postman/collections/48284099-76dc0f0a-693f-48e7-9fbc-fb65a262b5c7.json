@@ -2283,7 +2283,20 @@
 				},
 				{
 					"name": "Negative Endpoints",
-					"item": [],
+					"item": [
+						{
+							"name": "New Request",
+							"id": "48284099-309a1aec-611c-4d13-8a97-4116ef048dda",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "48284099-41443471-9c2b-4410-bcf7-dc9c766f9ceb"
 				}
 			],
