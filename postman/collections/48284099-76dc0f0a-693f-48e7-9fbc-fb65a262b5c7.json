@@ -216,7 +216,7 @@
 									]
 								},
 								{
-									"name": "RegisterUserAccount-status Copy",
+									"name": "RegisterUserAccount-invalid email",
 									"event": [
 										{
 											"listen": "test",
