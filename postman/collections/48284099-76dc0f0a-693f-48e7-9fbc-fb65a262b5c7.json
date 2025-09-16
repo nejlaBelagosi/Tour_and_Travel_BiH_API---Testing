@@ -3095,6 +3095,107 @@
 									]
 								},
 								{
+									"name": "AddIntoFavorites - unauthorized Copy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "e54f77a7-bb59-4e16-ad41-c3e55a189181",
+												"exec": [
+													"//expect status 401\r",
+													"pm.test(\"Response status to be 401\", function(){\r",
+													"    pm.expect(pm.response).to.have.status(401);\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-4c207138-b0b4-44aa-b39d-1d2dd437f5b6",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"packageId\": 1,\r\n  \"userId\": {{endUserId}}\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Favorite/PostFavorite",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Favorite",
+												"PostFavorite"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-ee6b3824-2762-4944-90b0-8216847668ff",
+											"name": "AddIntoFavorites",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"packageId\": 1,\r\n  \"userId\": {{endUserId}}\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Favorite/PostFavorite",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Favorite",
+														"PostFavorite"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "187"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 16:48:53 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-2749979f11c2acaef0d32c2c84a09eaf-a07519f8f8b8303b-00\"\n}"
+										}
+									]
+								},
+								{
 									"name": "DeleteFromFavorite",
 									"id": "48284099-8b9a2720-03dd-44dc-b759-94515dfd7bc4",
 									"protocolProfileBehavior": {
