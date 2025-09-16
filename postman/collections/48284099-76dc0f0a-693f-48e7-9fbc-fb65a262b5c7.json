@@ -2917,57 +2917,6 @@
 									},
 									"response": [
 										{
-											"id": "48284099-8586bc28-5302-421f-b4fe-1d98541e91da",
-											"name": "Login",
-											"originalRequest": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"username\": \"zejnilovicb\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "{{baseUrl}}/auth/login",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														"auth",
-														"login"
-													]
-												}
-											},
-											"status": "Bad Request",
-											"code": 400,
-											"_postman_previewlanguage": null,
-											"header": [
-												{
-													"key": "Content-Length",
-													"value": "310"
-												},
-												{
-													"key": "Content-Type",
-													"value": "application/problem+json; charset=utf-8"
-												},
-												{
-													"key": "Date",
-													"value": "Tue, 16 Sep 2025 16:36:57 GMT"
-												},
-												{
-													"key": "Server",
-													"value": "Kestrel"
-												}
-											],
-											"cookie": [],
-											"responseTime": null,
-											"body": "{\n    \"errors\": {\n        \"UserPassword\": [\n            \"The UserPassword field is required.\"\n        ]\n    },\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\n    \"title\": \"One or more validation errors occurred.\",\n    \"status\": 400,\n    \"traceId\": \"00-33caec2938c270b16eae32cb17e24c6c-145621f7dcd525a9-00\"\n}"
-										},
-										{
 											"id": "48284099-d2c32da6-3775-400f-94a4-cd541161bdef",
 											"name": "Login-missing field Copy",
 											"originalRequest": {
