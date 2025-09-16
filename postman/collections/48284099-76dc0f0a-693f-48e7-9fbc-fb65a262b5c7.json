@@ -3255,7 +3255,7 @@
 									"response": [
 										{
 											"id": "48284099-1ebb028c-082b-4bed-908e-85b2fc259b95",
-											"name": "DeleteFromFavorite - unauthorized Copy",
+											"name": "DeleteFromFavorite - nonexistent id",
 											"originalRequest": {
 												"method": "DELETE",
 												"header": [
