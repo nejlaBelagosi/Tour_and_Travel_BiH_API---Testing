@@ -3128,7 +3128,13 @@
 											]
 										},
 										"method": "POST",
-										"header": [],
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
 										"body": {
 											"mode": "raw",
 											"raw": "{\r\n  \"packageId\": 1,\r\n  \"userId\": {{endUserId}}\r\n}",
