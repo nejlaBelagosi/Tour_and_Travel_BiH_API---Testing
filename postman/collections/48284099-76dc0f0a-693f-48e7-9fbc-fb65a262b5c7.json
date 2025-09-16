@@ -3413,71 +3413,7 @@
 									]
 								},
 								{
-									"name": "MakeReservation - non-existen packageId",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "728d6e1e-93e2-4132-b08b-efbf84310423",
-												"exec": [
-													"\r",
-													"pm.test(\"Response status code is one of 400 or 404\", function(){\r",
-													"    pm.expect(pm.response.code).to.be.oneOf([400,404]);\r",
-													"})"
-												],
-												"type": "text/javascript",
-												"packages": {}
-											}
-										}
-									],
-									"id": "48284099-08578038-e0ee-4827-92d9-8abfe002d388",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": [
-												{
-													"key": "token",
-													"value": "{{enduserToken}}",
-													"type": "string"
-												}
-											]
-										},
-										"method": "POST",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n  \"totalTravelers\": 4,\r\n  \"dateOfReservation\": \"2025-09-14\",\r\n  \"totalPrice\": 20,\r\n  \"userId\": {{endUserId}},\r\n  \"packageId\": 1,\r\n  \"reservationStatus\": \"reservisano\"\r\n  }",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/PostReservation",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Reservation",
-												"PostReservation"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "UpdataeReservation",
+									"name": "UpdateReservation",
 									"id": "48284099-e22c2a16-0c21-4fe2-8b85-41112609689f",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
