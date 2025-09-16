@@ -2740,7 +2740,19 @@
 									},
 									"request": {
 										"method": "GET",
-										"header": []
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Review",
+												"GetReviewByPackageId",
+												"GetReviewByPackageId"
+											]
+										}
 									},
 									"response": []
 								},
