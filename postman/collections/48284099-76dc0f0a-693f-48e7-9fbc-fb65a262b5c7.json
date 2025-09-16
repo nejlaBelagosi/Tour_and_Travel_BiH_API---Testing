@@ -2485,7 +2485,7 @@
 									"response": []
 								},
 								{
-									"name": "Register User - status Copy",
+									"name": "Register User - invalid email",
 									"event": [
 										{
 											"listen": "test",
