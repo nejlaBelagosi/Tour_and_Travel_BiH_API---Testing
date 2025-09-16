@@ -3750,7 +3750,66 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-6156f777-c702-47fe-9d75-089b0ac87b48",
+											"name": "LeaveReview Copy",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"postDate\": \"2025-09-16\",\r\n  \"reviewComment\": \"Sve 5!!!!\",\r\n  \"rating\": 5,\r\n  \"userId\": {{endUserId}},\r\n  \"reservationId\": {{reservationId}}\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Review/PostReview",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Review",
+														"PostReview"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:25:15 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "Recenziju nije moguće dodati. Provjerite status rezervacije."
+										}
+									]
 								},
 								{
 									"name": "UpdateReview",
