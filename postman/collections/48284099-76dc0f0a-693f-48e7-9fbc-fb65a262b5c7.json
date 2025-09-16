@@ -1671,7 +1671,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"reviewId\": 2,\r\n  \"postDate\": \"2025-09-14\",\r\n  \"reviewComment\": \"Jako dobro organizovano\",\r\n  \"rating\": 4,\r\n  \"userId\": {{endUserId}},\r\n  \"reservationId\": {{reservationId}}\r\n}",
+											"raw": "{\r\n    \"reviewId\": 2,\r\n    \"postDate\": \"2025-09-14\",\r\n    \"reviewComment\": \"Jako dobro organizovano\",\r\n    \"rating\": 4,\r\n    \"userId\": {{endUserId}},\r\n    \"reservationId\": {{reservationId}}\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
