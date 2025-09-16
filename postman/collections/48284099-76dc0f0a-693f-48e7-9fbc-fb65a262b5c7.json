@@ -4676,7 +4676,7 @@
 									]
 								},
 								{
-									"name": "DeleteAccount Copy",
+									"name": "DeleteAccount - invalid path",
 									"event": [
 										{
 											"listen": "test",
