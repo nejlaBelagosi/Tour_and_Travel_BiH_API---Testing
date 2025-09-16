@@ -3589,7 +3589,7 @@
 							"name": "Reviews",
 							"item": [
 								{
-									"name": "LeaveReview",
+									"name": "LeaveReview - unauthorized",
 									"id": "48284099-b8cff5ac-35c4-4efd-9d68-618cdc4ec0d7",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
