@@ -2426,7 +2426,7 @@
 							"name": "Create User & Login",
 							"item": [
 								{
-									"name": "Register User",
+									"name": "Register User - status",
 									"event": [
 										{
 											"listen": "test",
@@ -2455,6 +2455,65 @@
 										}
 									],
 									"id": "48284099-309a1aec-611c-4d13-8a97-4116ef048dda",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Nejla\",\r\n  \"surname\": \"Belagoši\",\r\n  \"address\": \"Sarajevo\",\r\n  \"dateOfBirth\": \"1995-06-10\",\r\n  \"contact\": \"+38762166353\",\r\n  \"email\": \"invalid-email\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"nejla95\",\r\n  \"userPassword\": \"Lozinka123\",\r\n  \"userImage\": null\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Users/RegisterUser",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Users",
+												"RegisterUser"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Register User - status Copy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "594d8e2d-85dd-46bc-9d81-dfec4a8a5f3d",
+												"exec": [
+													"//Expecting a 400 bad request for missing required field\r",
+													"\r",
+													"//status code\r",
+													"pm.test(\"Response statuse code is 400\", function(){\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"//check the error message in the response\r",
+													"pm.test(\"Error message is present\", function(){\r",
+													"    pm.expect(jsonData.message || jsonData.error).to.exist;\r",
+													"});\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-54e6ea2b-3a15-4586-93e6-0569a3c546ef",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
