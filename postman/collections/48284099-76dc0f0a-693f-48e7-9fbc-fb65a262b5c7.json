@@ -2717,7 +2717,18 @@
 									},
 									"request": {
 										"method": "GET",
-										"header": []
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Review/GetReview",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Review",
+												"GetReview"
+											]
+										}
 									},
 									"response": []
 								},
