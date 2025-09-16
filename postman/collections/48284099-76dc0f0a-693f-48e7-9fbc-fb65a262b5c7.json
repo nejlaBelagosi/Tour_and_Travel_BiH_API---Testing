@@ -2420,7 +2420,7 @@
 					"id": "48284099-dc616134-2c4c-4750-97d7-954be60c4f24"
 				},
 				{
-					"name": "Negative Endpoints",
+					"name": "Negative Tests",
 					"item": [
 						{
 							"name": "Create User & Login",
