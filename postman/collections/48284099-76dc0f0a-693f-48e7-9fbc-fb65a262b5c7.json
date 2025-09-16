@@ -3813,6 +3813,21 @@
 								},
 								{
 									"name": "UpdateReview",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9ff4375d-500b-46c6-befe-971ffa41447f",
+												"exec": [
+													"pm.test(\"Status code is 401\", function () {\r",
+													"    pm.response.to.have.status(401);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-9f46f66d-95e7-4543-8f12-cd6197fed4fc",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
@@ -3833,7 +3848,52 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-6356041d-54e1-4a98-8e5b-2bdc48df8ad8",
+											"name": "UpdateReview",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/api/Review/UpdateReview/{{reviewId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Review",
+														"UpdateReview",
+														"{{reviewId}}"
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "187"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/problem+json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:26:11 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc9110#section-15.5.2\",\n    \"title\": \"Unauthorized\",\n    \"status\": 401,\n    \"traceId\": \"00-925bcc232e169c6c43bfc1f3d3dca9a3-41c0c1d1200b4f7d-00\"\n}"
+										}
+									]
 								},
 								{
 									"name": "GetReviewByPackageId",
