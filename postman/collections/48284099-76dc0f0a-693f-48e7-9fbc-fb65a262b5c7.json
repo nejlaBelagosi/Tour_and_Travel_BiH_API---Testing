@@ -3836,29 +3836,6 @@
 									"response": []
 								},
 								{
-									"name": "GetAllReviews",
-									"id": "48284099-de5dcc1e-f190-468e-a6d8-60f77ee7941e",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "{{baseUrl}}/api/Review/GetReview",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Review",
-												"GetReview"
-											]
-										}
-									},
-									"response": []
-								},
-								{
 									"name": "GetReviewByPackageId",
 									"id": "48284099-1c1188ca-09ff-40eb-a465-addb72b18e1f",
 									"protocolProfileBehavior": {
