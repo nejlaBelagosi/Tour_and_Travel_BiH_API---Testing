@@ -2763,6 +2763,27 @@
 								},
 								{
 									"name": "Login-missing field",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "70a5bd47-45bd-4438-8da8-2a68a55335d9",
+												"exec": [
+													"//status code 400\r",
+													"pm.test(\"Response expect to have status code 400\", function(){\r",
+													"    pm.expect(pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"//expects to have error message\r",
+													"pm.test(\"Error message exist\", function(){\r",
+													"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-f9a6fc76-3161-4a05-92a6-e8cfc6323fa3",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
