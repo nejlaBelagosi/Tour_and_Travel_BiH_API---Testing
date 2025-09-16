@@ -3313,6 +3313,22 @@
 							"item": [
 								{
 									"name": "MakeReservation",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "728d6e1e-93e2-4132-b08b-efbf84310423",
+												"exec": [
+													"//unauthorize \r",
+													"pm.test(\"Response status code is 401\", function(){\r",
+													"    pm.response.to.have.status(401);\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-2325eaca-8110-409c-baee-88b7668967b9",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
