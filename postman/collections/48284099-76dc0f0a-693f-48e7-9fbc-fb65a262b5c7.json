@@ -2686,7 +2686,7 @@
 									"response": []
 								},
 								{
-									"name": "New Request",
+									"name": "UpdateReview",
 									"id": "48284099-9f46f66d-95e7-4543-8f12-cd6197fed4fc",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
