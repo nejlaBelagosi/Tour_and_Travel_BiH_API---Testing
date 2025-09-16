@@ -3252,7 +3252,58 @@
 											]
 										}
 									},
-									"response": []
+									"response": [
+										{
+											"id": "48284099-1ebb028c-082b-4bed-908e-85b2fc259b95",
+											"name": "DeleteFromFavorite - unauthorized Copy",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Favorite",
+														"DeleteFavorite",
+														"{{favoriteItemId}}"
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 16 Sep 2025 17:07:03 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "Favorite not found in Database."
+										}
+									]
 								},
 								{
 									"name": "FavoriteItems",
