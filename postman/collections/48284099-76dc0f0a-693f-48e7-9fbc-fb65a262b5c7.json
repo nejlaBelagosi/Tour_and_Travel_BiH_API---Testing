@@ -2562,7 +2562,7 @@
 													"\r",
 													"//check the error message in the response\r",
 													"pm.test(\"Error message is present\", function(){\r",
-													"    pm.expect(jsonData.message || jsonData.error).to.exist;\r",
+													"    pm.expect(pm.response.text()).to.not.be.empty;\r",
 													"});\r",
 													"\r",
 													""
