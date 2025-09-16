@@ -3206,7 +3206,7 @@
 													"    pm.response.to.have.status(404);\r",
 													"});\r",
 													"pm.test(\"Response indicates favorite item not found\", () => {\r",
-													"    const jsonData = pm.response.json();\r",
+													"    const jsonData = pm.response.text();\r",
 													"    pm.expect(jsonData.title || jsonData.message).to.include.oneOf([\"not found\", \"does not exist\"]);\r",
 													"});"
 												],
