@@ -2336,9 +2336,14 @@
 							"id": "48284099-88be8ee6-af8f-4816-a63c-c632e8b10960"
 						},
 						{
-							"name": "New Folder",
+							"name": "Favorite Items",
 							"item": [],
 							"id": "48284099-f2f3d75c-bb23-4a9c-b240-b09f3ccaac78"
+						},
+						{
+							"name": "Reservations",
+							"item": [],
+							"id": "48284099-132a16d7-f16f-464b-bfb9-eedf7fb769ca"
 						}
 					],
 					"id": "48284099-41443471-9c2b-4410-bcf7-dc9c766f9ceb"
