@@ -1532,7 +1532,7 @@
 													"\r",
 													"// Checks reservation status\r",
 													"pm.test(\"Reservation status is 'zavrseno'\", function () {\r",
-													"    pm.expect(jsonData.reservationStatus).to.eql(\"zavrseno\");\r",
+													"    pm.expect(jsonData.reservation && jsonData.reservationStatus).to.eql(\"zavrseno\");\r",
 													"});"
 												],
 												"type": "text/javascript",
