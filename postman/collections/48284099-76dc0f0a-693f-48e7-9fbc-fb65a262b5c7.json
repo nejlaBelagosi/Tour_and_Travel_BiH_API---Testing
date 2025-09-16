@@ -2764,8 +2764,20 @@
 										"disableBodyPruning": true
 									},
 									"request": {
-										"method": "GET",
-										"header": []
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Review/DeleteReview/{{reviewId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Review",
+												"DeleteReview",
+												"{{reviewId}}"
+											]
+										}
 									},
 									"response": []
 								}
