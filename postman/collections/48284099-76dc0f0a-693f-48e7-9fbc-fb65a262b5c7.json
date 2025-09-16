@@ -2788,7 +2788,7 @@
 							"name": "Account",
 							"item": [
 								{
-									"name": "New Request",
+									"name": "UpdateAccount",
 									"id": "48284099-d244ba19-83f7-4de5-b101-bbc281c416a0",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
@@ -2808,6 +2808,18 @@
 												"{{accountId}}"
 											]
 										}
+									},
+									"response": []
+								},
+								{
+									"name": "New Request",
+									"id": "48284099-2fbc465a-a4f5-4e9d-90db-76994201fa46",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": []
 									},
 									"response": []
 								}
