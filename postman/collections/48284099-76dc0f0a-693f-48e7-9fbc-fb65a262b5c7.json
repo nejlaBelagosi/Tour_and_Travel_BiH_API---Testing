@@ -20,7 +20,7 @@
 							"name": "Create User & Login",
 							"item": [
 								{
-									"name": "RegisterUserAccount-status",
+									"name": "RegisterUserAccount",
 									"event": [
 										{
 											"listen": "test",
