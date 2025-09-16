@@ -14,416 +14,6 @@
 			"name": "EndUser",
 			"item": [
 				{
-					"name": "Account",
-					"item": [
-						{
-							"name": "UpdateAccount",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "3b972e42-a8ed-4194-8295-e3f7ca9d6fe2",
-										"exec": [
-											"// Status code\r",
-											"pm.test(\"Status code is 200 or 400\", function () {\r",
-											"    pm.expect(pm.response.code).to.be.oneOf([200, 400]);\r",
-											"});\r",
-											"\r",
-											"// User update validation\r",
-											"pm.test(\"User updated successfully\", () => {\r",
-											"    if (pm.response.headers.get('Content-Type')?.includes('application/json')) {\r",
-											"        const res = pm.response.json();\r",
-											"        const requestData = JSON.parse(pm.request.body.raw);\r",
-											"\r",
-											"        pm.expect(res.username).to.eql(requestData.username);\r",
-											"        pm.expect(res.userPassword).to.eql(requestData.userPassword);\r",
-											"        pm.expect(res.userImage).to.eql(requestData.userImage);\r",
-											"        pm.expect(res.accountTypeId).to.eql(requestData.accountTypeId);\r",
-											"    } else {\r",
-											"        pm.expect(pm.response.text()).to.include(\"Account not found\");\r",
-											"    }\r",
-											"});\r",
-											"\r",
-											"// Checks if API headers are correct\r",
-											"pm.test(\"API Headers are correct\", function () {\r",
-											"    const contentType = pm.response.headers.get('Content-Type');\r",
-											"    pm.expect(contentType).to.satisfy(type => \r",
-											"        type.includes('application/json') || type.includes('text/plain')\r",
-											"    );\r",
-											"});\r",
-											"\r",
-											"\r",
-											"// Checks if API payload is within accepted limits\r",
-											"pm.test(\"Response payload is within accepted limits\", function () {\r",
-											"    pm.expect(pm.response.text().length).to.be.below(1024);\r",
-											"});\r",
-											"\r",
-											"// Checks if API URL is correct\r",
-											"pm.test(\"API URL is correct\", function () {\r",
-											"    const expectedUrl = `${pm.environment.get('baseUrl')}/api/Account/UpdateAccount/${pm.environment.get('accountId')}`;\r",
-											"    pm.expect(pm.request.url.toString()).to.eql(expectedUrl);\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-cf1b0dac-913f-4d6f-ae6e-87e7a85126c5",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "PUT",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"image.png\",\r\n  \"userId\": {{endUserId}},\r\n  \"accountTypeId\": 2\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Account",
-										"UpdateAccount",
-										"{{accountId}}"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-0f2c5c4b-0faa-460d-a2bb-8321b15095d5",
-									"name": "UpdateAccount",
-									"originalRequest": {
-										"method": "PUT",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"image.png\",\r\n  \"userId\": {{endUserId}},\r\n  \"accountTypeId\": 2\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Account",
-												"UpdateAccount",
-												"{{accountId}}"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "text/plain; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:49:19 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										},
-										{
-											"key": "Transfer-Encoding",
-											"value": "chunked"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "Account edited"
-								}
-							]
-						},
-						{
-							"name": "UserLogout",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "0e02533e-d0cb-43a1-84d3-6c915b82ad97",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"//Response doesn't contain sensitive infromations\r",
-											"pm.test(\"Response does not contain sensitive infromations\", function(){\r",
-											"    var responseText = pm.response.text();\r",
-											"    pm.expect(responseText).to.not.include(\"token\");\r",
-											"    pm.expect(responseText).to.not.include(\"password\");\r",
-											"    pm.expect(responseText).to.not.include(\"secret\");\r",
-											"});\r",
-											"\r",
-											"//checks if API headers are correct\r",
-											"pm.test(\"Check if API headers are correct\", function () {\r",
-											"    const contentType = pm.response.headers.get('Content-Type');\r",
-											"    pm.expect(contentType, \"Content-Type header is missing\").to.not.be.undefined;\r",
-											"    pm.expect(contentType).to.satisfy(type =>\r",
-											"        type.includes('application/json') || type.includes('text/plain')\r",
-											"    );\r",
-											"});\r",
-											"\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-6db3f942-a910-4f62-9754-07aa6881dc74",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/auth/logout",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"logout"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-a6be2be2-1b70-4dc5-a5f9-0c55cf2c550a",
-									"name": "UserLogout",
-									"originalRequest": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/auth/logout",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"auth",
-												"logout"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "44"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:49:31 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"message\": \"Logged out successfully\"\n}"
-								}
-							]
-						},
-						{
-							"name": "DeleteAccount",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "a3806bd4-695c-4c51-9230-baea6e3b289c",
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"//Response time is below 1000ms\r",
-											"pm.test(\"Response time is below 1000ms\", function(){\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
-											"})\r",
-											"\r",
-											"//check API Url endpoint is valid\r",
-											"pm.test(\"API URL endpoint is valid\", function(){\r",
-											"    pm.expect(pm.request.url.toString()).to.eql(`${pm.environment.get('baseUrl')}/api/Account/DeleteAccount/${pm.environment.get('accountId')}`);\r",
-											"})\r",
-											"\r",
-											"//check header content type\r",
-											"pm.test(\"Content-Type is application/json\", function(){\r",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
-											"})\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-d17d5a15-61e3-4ed9-b52e-294d21f89cb1",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Account",
-										"DeleteAccount",
-										"{{accountId}}"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-ea265fde-1b33-4b02-8090-a69e81913a7b",
-									"name": "DeleteAccount",
-									"originalRequest": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Account",
-												"DeleteAccount",
-												"{{accountId}}"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "335"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:50:30 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"accountId\": 9,\n    \"username\": \"Halle.Kuhn54\",\n    \"userPassword\": \"y9xZNK85ZbVp5nC\",\n    \"userImage\": \"image.png\",\n    \"userId\": 10,\n    \"accountTypeId\": 2,\n    \"authenticationTokens\": [\n        {\n            \"authenticationId\": 21,\n            \"tokenValue\": \"tGFJaFikhC\",\n            \"recordingTime\": \"09-14-2025\",\n            \"accountId\": 9\n        }\n    ]\n}"
-								}
-							]
-						}
-					],
-					"id": "48284099-fb18103a-34ff-494e-a8bb-de17cde4199e"
-				},
-				{
 					"name": "Positive Ednpoints",
 					"item": [
 						{
@@ -2277,9 +1867,424 @@
 								}
 							],
 							"id": "48284099-63057ba4-c269-4972-a879-63946e8ab2b1"
+						},
+						{
+							"name": "Account",
+							"item": [
+								{
+									"name": "UpdateAccount",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3b972e42-a8ed-4194-8295-e3f7ca9d6fe2",
+												"exec": [
+													"// Status code\r",
+													"pm.test(\"Status code is 200 or 400\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([200, 400]);\r",
+													"});\r",
+													"\r",
+													"// User update validation\r",
+													"pm.test(\"User updated successfully\", () => {\r",
+													"    if (pm.response.headers.get('Content-Type')?.includes('application/json')) {\r",
+													"        const res = pm.response.json();\r",
+													"        const requestData = JSON.parse(pm.request.body.raw);\r",
+													"\r",
+													"        pm.expect(res.username).to.eql(requestData.username);\r",
+													"        pm.expect(res.userPassword).to.eql(requestData.userPassword);\r",
+													"        pm.expect(res.userImage).to.eql(requestData.userImage);\r",
+													"        pm.expect(res.accountTypeId).to.eql(requestData.accountTypeId);\r",
+													"    } else {\r",
+													"        pm.expect(pm.response.text()).to.include(\"Account not found\");\r",
+													"    }\r",
+													"});\r",
+													"\r",
+													"// Checks if API headers are correct\r",
+													"pm.test(\"API Headers are correct\", function () {\r",
+													"    const contentType = pm.response.headers.get('Content-Type');\r",
+													"    pm.expect(contentType).to.satisfy(type => \r",
+													"        type.includes('application/json') || type.includes('text/plain')\r",
+													"    );\r",
+													"});\r",
+													"\r",
+													"\r",
+													"// Checks if API payload is within accepted limits\r",
+													"pm.test(\"Response payload is within accepted limits\", function () {\r",
+													"    pm.expect(pm.response.text().length).to.be.below(1024);\r",
+													"});\r",
+													"\r",
+													"// Checks if API URL is correct\r",
+													"pm.test(\"API URL is correct\", function () {\r",
+													"    const expectedUrl = `${pm.environment.get('baseUrl')}/api/Account/UpdateAccount/${pm.environment.get('accountId')}`;\r",
+													"    pm.expect(pm.request.url.toString()).to.eql(expectedUrl);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-cf1b0dac-913f-4d6f-ae6e-87e7a85126c5",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"image.png\",\r\n  \"userId\": {{endUserId}},\r\n  \"accountTypeId\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Account",
+												"UpdateAccount",
+												"{{accountId}}"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-0f2c5c4b-0faa-460d-a2bb-8321b15095d5",
+											"name": "UpdateAccount",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"image.png\",\r\n  \"userId\": {{endUserId}},\r\n  \"accountTypeId\": 2\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Account",
+														"UpdateAccount",
+														"{{accountId}}"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:49:19 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "Account edited"
+										}
+									]
+								},
+								{
+									"name": "UserLogout",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "0e02533e-d0cb-43a1-84d3-6c915b82ad97",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"//Response doesn't contain sensitive infromations\r",
+													"pm.test(\"Response does not contain sensitive infromations\", function(){\r",
+													"    var responseText = pm.response.text();\r",
+													"    pm.expect(responseText).to.not.include(\"token\");\r",
+													"    pm.expect(responseText).to.not.include(\"password\");\r",
+													"    pm.expect(responseText).to.not.include(\"secret\");\r",
+													"});\r",
+													"\r",
+													"//checks if API headers are correct\r",
+													"pm.test(\"Check if API headers are correct\", function () {\r",
+													"    const contentType = pm.response.headers.get('Content-Type');\r",
+													"    pm.expect(contentType, \"Content-Type header is missing\").to.not.be.undefined;\r",
+													"    pm.expect(contentType).to.satisfy(type =>\r",
+													"        type.includes('application/json') || type.includes('text/plain')\r",
+													"    );\r",
+													"});\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-6db3f942-a910-4f62-9754-07aa6881dc74",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/auth/logout",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"logout"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-a6be2be2-1b70-4dc5-a5f9-0c55cf2c550a",
+											"name": "UserLogout",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/auth/logout",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"auth",
+														"logout"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "44"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:49:31 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"message\": \"Logged out successfully\"\n}"
+										}
+									]
+								},
+								{
+									"name": "DeleteAccount",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a3806bd4-695c-4c51-9230-baea6e3b289c",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"//Response time is below 1000ms\r",
+													"pm.test(\"Response time is below 1000ms\", function(){\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"})\r",
+													"\r",
+													"//check API Url endpoint is valid\r",
+													"pm.test(\"API URL endpoint is valid\", function(){\r",
+													"    pm.expect(pm.request.url.toString()).to.eql(`${pm.environment.get('baseUrl')}/api/Account/DeleteAccount/${pm.environment.get('accountId')}`);\r",
+													"})\r",
+													"\r",
+													"//check header content type\r",
+													"pm.test(\"Content-Type is application/json\", function(){\r",
+													"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+													"})\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-d17d5a15-61e3-4ed9-b52e-294d21f89cb1",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Account",
+												"DeleteAccount",
+												"{{accountId}}"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-ea265fde-1b33-4b02-8090-a69e81913a7b",
+											"name": "DeleteAccount",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Account",
+														"DeleteAccount",
+														"{{accountId}}"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "335"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:50:30 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"accountId\": 9,\n    \"username\": \"Halle.Kuhn54\",\n    \"userPassword\": \"y9xZNK85ZbVp5nC\",\n    \"userImage\": \"image.png\",\n    \"userId\": 10,\n    \"accountTypeId\": 2,\n    \"authenticationTokens\": [\n        {\n            \"authenticationId\": 21,\n            \"tokenValue\": \"tGFJaFikhC\",\n            \"recordingTime\": \"09-14-2025\",\n            \"accountId\": 9\n        }\n    ]\n}"
+										}
+									]
+								}
+							],
+							"id": "48284099-fb18103a-34ff-494e-a8bb-de17cde4199e"
 						}
 					],
 					"id": "48284099-dc616134-2c4c-4750-97d7-954be60c4f24"
+				},
+				{
+					"name": "Negative Endpoints",
+					"item": [],
+					"id": "48284099-41443471-9c2b-4410-bcf7-dc9c766f9ceb"
 				}
 			],
 			"id": "48284099-7ffcb962-a8a4-41ef-974d-6ad9b897112a"
