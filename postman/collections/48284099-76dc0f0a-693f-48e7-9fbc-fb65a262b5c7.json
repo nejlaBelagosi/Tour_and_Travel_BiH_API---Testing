@@ -1602,7 +1602,7 @@
 												"id": "712ae00f-c0a4-447b-833d-7e0937c21b0c",
 												"exec": [
 													"\r",
-													"const jsonData = pm.response.json();\r",
+													"const jsonData = pm.response.text();\r",
 													"\r",
 													"pm.test(\"Status code is 200\", function () {\r",
 													"    pm.response.to.have.status(200);\r",
