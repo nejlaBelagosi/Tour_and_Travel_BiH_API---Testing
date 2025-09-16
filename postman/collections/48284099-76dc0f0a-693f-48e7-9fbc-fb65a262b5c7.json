@@ -3612,6 +3612,29 @@
 									"response": []
 								},
 								{
+									"name": "LeaveReview Copy",
+									"id": "48284099-0abac2d6-f37b-4b7c-b0ca-2f7488c32320",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Review/PostReview",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Review",
+												"PostReview"
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "UpdateReview",
 									"id": "48284099-9f46f66d-95e7-4543-8f12-cd6197fed4fc",
 									"protocolProfileBehavior": {
