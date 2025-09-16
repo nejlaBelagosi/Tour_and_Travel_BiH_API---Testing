@@ -2692,8 +2692,20 @@
 										"disableBodyPruning": true
 									},
 									"request": {
-										"method": "GET",
-										"header": []
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/api/Review/UpdateReview/{{reviewId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Review",
+												"UpdateReview",
+												"{{reviewId}}"
+											]
+										}
 									},
 									"response": []
 								},
