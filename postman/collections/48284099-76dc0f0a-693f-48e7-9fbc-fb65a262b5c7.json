@@ -2758,7 +2758,7 @@
 									"response": []
 								},
 								{
-									"name": "New Request",
+									"name": "DeleteReview",
 									"id": "48284099-bac490b8-1a7f-4dfb-8997-760006d56bd8",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
