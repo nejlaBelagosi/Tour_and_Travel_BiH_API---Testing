@@ -2427,6 +2427,29 @@
 							"item": [
 								{
 									"name": "Register User",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "594d8e2d-85dd-46bc-9d81-dfec4a8a5f3d",
+												"exec": [
+													"//status code\r",
+													"pm.test(\"Response statuse code is 400\", function(){\r",
+													"    pm.response.to.have.status(400);\r",
+													"});\r",
+													"\r",
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"//check the error message in the response\r",
+													"pm.test(\"Error message is present\", function(){\r",
+													"    pm.expect(jsonData.message || jsonData.error).to.exist;\r",
+													"})"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-309a1aec-611c-4d13-8a97-4116ef048dda",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
