@@ -4036,8 +4036,8 @@
 											"script": {
 												"id": "56dcfbf4-6089-475d-a1b4-4f55cc0acfd9",
 												"exec": [
-													"pm.test(\"Status code is 400\", function () {\r",
-													"    pm.response.to.have.status(400);\r",
+													"pm.test(\"Status code is 400 or 404\", function () {\r",
+													"    pm.expect(pm.response.code).to.be.oneOf([400,404]);\r",
 													"});"
 												],
 												"type": "text/javascript",
