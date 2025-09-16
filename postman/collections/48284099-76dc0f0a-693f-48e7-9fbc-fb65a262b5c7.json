@@ -1510,7 +1510,9 @@
 													"    pm.expect(jsonData.postDate).to.eql(\"date\");\r",
 													"    pm.expect(jsonData.reviewComment).to.eql(\"string\");\r",
 													"    pm.expect(jsonData.userId).to.eql(\"number\");\r",
-													"})"
+													"})\r",
+													"\r",
+													""
 												],
 												"type": "text/javascript",
 												"packages": {}
