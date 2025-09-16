@@ -3095,7 +3095,7 @@
 									]
 								},
 								{
-									"name": "DeleteFromFavorite",
+									"name": "DeleteFromFavorite - unauthorized",
 									"event": [
 										{
 											"listen": "test",
