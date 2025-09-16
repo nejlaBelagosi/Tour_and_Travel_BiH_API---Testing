@@ -4462,6 +4462,24 @@
 								},
 								{
 									"name": "UserLogout",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "08adefb1-ce25-4b05-8750-113c62bd2cdd",
+												"exec": [
+													"// Already logged out or missing token\r",
+													"if (pm.response.code === 400) {\r",
+													"    pm.test(\"Logout failed - already logged out or token missing\", function () {\r",
+													"        pm.expect(pm.response.text().toLowerCase()).to.include(\"logout\");\r",
+													"    });\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-2fbc465a-a4f5-4e9d-90db-76994201fa46",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
