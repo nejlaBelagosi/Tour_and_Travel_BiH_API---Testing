@@ -14,811 +14,6 @@
 			"name": "EndUser",
 			"item": [
 				{
-					"name": "Create User & Login",
-					"item": [
-						{
-							"name": "RegisterUserAccount",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "df99e881-2e8d-48d6-800b-8ae4d6135910",
-										"exec": [
-											"const requestBody = pm.request.body.raw;\r",
-											"const requestData = JSON.parse(requestBody);\r",
-											"const jsonData = pm.response.json();\r",
-											"\r",
-											"// Store accountId from newAccount\r",
-											"if (jsonData.newAccount && jsonData.newAccount.accountId) {\r",
-											"    pm.environment.set(\"accountId\", jsonData.newAccount.accountId);\r",
-											"    console.log(\"accountId stored from newAccount:\", jsonData.newAccount.accountId);\r",
-											"}\r",
-											"\r",
-											"// Store username \r",
-											"if (jsonData.newAccount && jsonData.newAccount.username){\r",
-											"    pm.environment.set(\"username\", jsonData.newAccount.username);\r",
-											"    console.log(\"username stored from newAccount\", jsonData.newAccount.username);\r",
-											"}\r",
-											"\r",
-											"//store user password\r",
-											"if (jsonData.newAccount && jsonData.newAccount.userPassword){\r",
-											"    pm.environment.set(\"userPassword\", jsonData.newAccount.userPassword);\r",
-											"    console.log(\"User password stored from newAccount\", jsonData.newAccount.userPassword);\r",
-											"}\r",
-											"\r",
-											"//checks API status\r",
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"//checks JSON response\r",
-											"pm.test(\"Response is JSON\", function () {\r",
-											"    pm.expect(pm.response.json()).to.not.be.null;\r",
-											"});\r",
-											"\r",
-											"//checks if API response headers are valid\r",
-											"pm.test(\"check if API response headers are valid\", function () {\r",
-											"    pm.expect(pm.response.headers.get(\"Content-type\")).to.include(\"application/json\");\r",
-											"});\r",
-											"\r",
-											"//check if API respons time is below 500ms\r",
-											"pm.test(\"Response time is below 500ms\", function(){\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
-											"});\r",
-											"\r",
-											"//checks if API method is Valid\r",
-											"pm.test(\"API method is valid\", function(){\r",
-											"    pm.expect(pm.request.method).to.eql(\"POST\");\r",
-											"});\r",
-											"\r",
-											"//checks if API endpoint URL is valid\r",
-											"pm.test(\"URL Endpoint is valid\", function(){\r",
-											"    const baseUrl = pm.variables.get(\"baseUrl\");\r",
-											"    pm.expect(pm.request.url.toString()).to.eql(`${baseUrl}/api/Users/RegisterUser`);\r",
-											"});\r",
-											"\r",
-											"//checks required fields\r",
-											"pm.test(\"Response contains required user properties\", function() {\r",
-											"    pm.expect(jsonData).to.have.property(\"newUser\");\r",
-											"    pm.expect(jsonData).to.have.property(\"newAccount\");\r",
-											"\r",
-											"    const newUser = jsonData.newUser;\r",
-											"    const newAccount = jsonData.newAccount;\r",
-											"\r",
-											"    pm.expect(newUser).to.have.property(\"name\");\r",
-											"    pm.expect(newUser).to.have.property(\"surname\");\r",
-											"    pm.expect(newUser).to.have.property(\"address\");\r",
-											"    pm.expect(newUser).to.have.property(\"dateOfBirth\");\r",
-											"    pm.expect(newUser).to.have.property(\"contact\");\r",
-											"    pm.expect(newUser).to.have.property(\"email\");\r",
-											"\r",
-											"    pm.expect(newAccount).to.have.property(\"accountTypeId\");\r",
-											"    pm.expect(newAccount).to.have.property(\"username\");\r",
-											"    pm.expect(newAccount).to.have.property(\"userPassword\");\r",
-											"    pm.expect(newAccount).to.have.property(\"userImage\");\r",
-											"});\r",
-											"\r",
-											"//checks are fields valid\r",
-											"pm.test(\"Response fields match request data\", function() {\r",
-											"    const newUser = jsonData.newUser;\r",
-											"    const newAccount = jsonData.newAccount;\r",
-											"\r",
-											"    pm.expect(newUser.email).to.eql(requestData.email);\r",
-											"    pm.expect(newUser.contact).to.eql(requestData.contact);\r",
-											"    pm.expect(newAccount.userImage).to.eql(requestData.userImage);\r",
-											"});\r",
-											"\r",
-											"//checks email format\r",
-											"pm.test(\"Email format is valid\", function() {\r",
-											"    const newUser = jsonData.newUser;\r",
-											"    pm.expect(newUser.email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/);\r",
-											"});\r",
-											"//checks if picture format valid\r",
-											"pm.test(\"Picture format is valid\", function() {\r",
-											"    const newAccount = jsonData.newAccount;\r",
-											"    pm.expect(newAccount.userImage).to.match(/\\w+\\.(jpg|png)$/i);\r",
-											"});\r",
-											"//checks if API payload size is within accepted limits 1024\r",
-											"pm.test(\"API payload is within acceptable size\", function(){\r",
-											"    pm.expect(pm.request.body.raw.length).to.be.below(1024);\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-3e27ec31-e723-4dae-a53e-7173e366c5f8",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"{{$randomFirstName}}\",\r\n  \"surname\": \"{{$randomLastName}}\",\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"dateOfBirth\": \"1998-09-14\",\r\n  \"contact\": \"{{$randomPhoneNumber}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"user.jpg\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/Users/RegisterUser",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Users",
-										"RegisterUser"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-af3edd32-f9ac-44ca-83bd-9b182803f868",
-									"name": "RegisterUserAccount",
-									"originalRequest": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n  \"name\": \"{{$randomFirstName}}\",\r\n  \"surname\": \"{{$randomLastName}}\",\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"dateOfBirth\": \"1998-09-14\",\r\n  \"contact\": \"{{$randomPhoneNumber}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"user.jpg\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/api/Users/RegisterUser",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Users",
-												"RegisterUser"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "1171"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:44:20 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"newUser\": {\n        \"userId\": 10,\n        \"name\": \"Lonny\",\n        \"surname\": \"Cruickshank\",\n        \"address\": \"50048 Derrick Square\",\n        \"dateOfBirth\": \"09-14-1998\",\n        \"contact\": \"596-475-8892\",\n        \"email\": \"Camille_Casper25@gmail.com\",\n        \"accounts\": [\n            {\n                \"accountId\": 9,\n                \"username\": \"Mandy_Smitham69\",\n                \"userPassword\": \"C4Rzmk01KSch7gk\",\n                \"userImage\": \"user.jpg\",\n                \"userId\": 10,\n                \"accountTypeId\": 2,\n                \"authenticationTokens\": []\n            }\n        ],\n        \"favorites\": [],\n        \"reservations\": [],\n        \"reviews\": []\n    },\n    \"newAccount\": {\n        \"accountId\": 9,\n        \"username\": \"Mandy_Smitham69\",\n        \"userPassword\": \"C4Rzmk01KSch7gk\",\n        \"userImage\": \"user.jpg\",\n        \"userId\": 10,\n        \"accountTypeId\": 2,\n        \"authenticationTokens\": [],\n        \"user\": {\n            \"userId\": 10,\n            \"name\": \"Lonny\",\n            \"surname\": \"Cruickshank\",\n            \"address\": \"50048 Derrick Square\",\n            \"dateOfBirth\": \"09-14-1998\",\n            \"contact\": \"596-475-8892\",\n            \"email\": \"Camille_Casper25@gmail.com\",\n            \"accounts\": [],\n            \"favorites\": [],\n            \"reservations\": [],\n            \"reviews\": []\n        }\n    }\n}"
-								}
-							]
-						},
-						{
-							"name": "UserLogin",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "7891d8bf-38e5-4d05-8e8b-389aea985318",
-										"exec": [
-											"//authorization token automaticaly added to the environment variable\r",
-											"const jsonData = pm.response.json();\r",
-											"\r",
-											"// checks if response has token value\r",
-											"if (jsonData.token) {\r",
-											"    pm.environment.set(\"enduserToken\", jsonData.token);\r",
-											"    console.log(\"User token set: \" + jsonData.token);\r",
-											"} else {\r",
-											"    console.log(\"Token not found in response!\");\r",
-											"}\r",
-											"\r",
-											"//store userId after login\r",
-											"if(jsonData.user && jsonData.user.userId){\r",
-											"    pm.environment.set(\"endUserId\", jsonData.user.userId);\r",
-											"}\r",
-											"\r",
-											"//store accountId\r",
-											"if(jsonData.user && jsonData.user.accountId){\r",
-											"    pm.environment.set(\"accountId\", jsonData.user.accountId);\r",
-											"}\r",
-											"\r",
-											"//checks response status\r",
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"// Are API response headers valid\r",
-											"pm.test(\"API response header is valid\", function(){\r",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
-											"});\r",
-											"\r",
-											"// Token is not empty\r",
-											"pm.test(\"Token is not empty\", function(){\r",
-											"    pm.expect(pm.response.json().token).not.to.be.empty;\r",
-											"})\r",
-											"\r",
-											"// response has token\r",
-											"pm.test(\"Response has token\", function(){\r",
-											"    pm.expect(pm.response.json()).to.have.property(\"token\");\r",
-											"    pm.expect(pm.response.json().token).to.be.a(\"string\").and.not.empty;\r",
-											"});\r",
-											"\r",
-											"//Response has objects\r",
-											"pm.test(\"Response has user object\", function(){\r",
-											"    pm.expect(pm.response.json().user).to.have.property(\"userId\");\r",
-											"    pm.expect(pm.response.json().user).to.have.property(\"name\");\r",
-											"    pm.expect(pm.response.json().user).to.have.property(\"surname\");\r",
-											"    pm.expect(pm.response.json().user).to.have.property(\"accountTypeId\");\r",
-											"});\r",
-											"\r",
-											"// UserId should be a positive number\r",
-											"pm.test(\"UserId is a positive number\", function () {\r",
-											"    pm.expect(jsonData.user.userId).to.be.a(\"number\");\r",
-											"    pm.expect(jsonData.user.userId).to.be.above(0);\r",
-											"});\r",
-											"\r",
-											"// Error handling if token is missing\r",
-											"if (!jsonData.token) {\r",
-											"    console.error(\"Token not found in response!\");\r",
-											"    pm.test(\"Token missing error\", function () {\r",
-											"        throw new Error(\"Token not found in response\");\r",
-											"    });\r",
-											"}\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-82bdcd91-c6a2-4269-bc7e-504468ac5180",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "noauth"
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"userPassword\": \"{{userPassword}}\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/login",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-b3736b2b-e039-4b38-857e-276e3086434b",
-									"name": "UserLogin",
-									"originalRequest": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"username\": \"Mandy_Smitham69\",\r\n    \"userPassword\": \"C4Rzmk01KSch7gk\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/auth/login",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"auth",
-												"login"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "162"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:46:16 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"token\": \"TrTnajrLg2\",\n    \"tokenId\": 20,\n    \"user\": {\n        \"userId\": 10,\n        \"name\": \"Lonny\",\n        \"surname\": \"Cruickshank\",\n        \"accountTypeId\": 2\n    }\n}"
-								}
-							]
-						}
-					],
-					"id": "48284099-b0465c70-d924-4cb2-b034-d173f7c9ec5f"
-				},
-				{
-					"name": "Favorite Items",
-					"item": [
-						{
-							"name": "AddIntoFavorite",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "3cfcedf1-c561-464a-bca0-e20d6d8ef8d4",
-										"exec": [
-											"pm.test(\"Response is JSON\", function () {\r",
-											"    pm.expect(pm.response.json());\r",
-											"});\r",
-											"\r",
-											"const jsonData = pm.response.json();\r",
-											"\r",
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(\"packageId matches request\", function () {\r",
-											"    const requestBody = pm.request.body ? JSON.parse(pm.request.body.raw) : {};\r",
-											"    const jsonData = pm.response.json();\r",
-											"    pm.expect(jsonData.packageId).to.eql(requestBody.packageId);\r",
-											"});\r",
-											"\r",
-											"//store favoriteItemId after adding it\r",
-											"if(jsonData && jsonData.favoriteItemId){\r",
-											"    pm.environment.set(\"favoriteItemId\", jsonData.favoriteItemId);\r",
-											"}"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-5a6e36e8-211e-4d63-a495-a2508ec22c06",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"packageId\": 1,\r\n  \"userId\": {{endUserId}}\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/api/Favorite/PostFavorite",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Favorite",
-										"PostFavorite"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-2a5ab4b2-1d0d-4ded-8912-b0da2ff0a956",
-									"name": "AddIntoFavorite",
-									"originalRequest": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n  \"packageId\": 1,\r\n  \"userId\": {{endUserId}}\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/api/Favorite/PostFavorite",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Favorite",
-												"PostFavorite"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "63"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:46:47 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"favoriteItemId\": 6,\n    \"packageId\": 1,\n    \"userId\": 10\n}"
-								}
-							]
-						},
-						{
-							"name": "GetFavoriteItems",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "b059ad13-400c-49e6-b2a1-ca6d86b791af",
-										"exec": [
-											"const jsonData = pm.response.json();\r",
-											"\r",
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"//checks if response is JSON\r",
-											"pm.test(\"Response is JSON\", function () {\r",
-											"    pm.expect(pm.response.json());\r",
-											"});\r",
-											"\r",
-											"isJson = true;\r",
-											"\r",
-											"if (isJson) {\r",
-											"    //Checks if there is favorites array\r",
-											"    pm.test(\"Favorites array is present\", function () {\r",
-											"        pm.expect(jsonData).to.be.an(\"array\");\r",
-											"    });\r",
-											"\r",
-											"    if (jsonData.length > 0) {\r",
-											"        // Each favorite item has required fields\r",
-											"        pm.test(\"Each favorite item has required fields\", function () {\r",
-											"            jsonData.forEach(item => {\r",
-											"                pm.expect(item).to.have.property(\"favoriteItemId\");\r",
-											"                pm.expect(item).to.have.property(\"packageId\");\r",
-											"                pm.expect(item).to.have.property(\"userId\");\r",
-											"            })\r",
-											"        });\r",
-											"\r",
-											"        // data types are valid\r",
-											"        pm.test(\"Favorite item fields have correct data types\", function () {\r",
-											"            jsonData.forEach(item => {\r",
-											"                pm.expect(item.favoriteItemId).to.be.a(\"number\");\r",
-											"                pm.expect(item.packageId).to.be.a(\"number\");\r",
-											"                pm.expect(item.userId).to.be.a(\"number\");\r",
-											"            })\r",
-											"        })\r",
-											"\r",
-											"        // Each favorite item belongs to the logged-in user\r",
-											"        pm.test(\"Each favorite item belongs to the logged-in user\", function () {\r",
-											"            const loggedInUserId = parseInt(pm.environment.get(\"endUserId\"), 10);\r",
-											"            jsonData.forEach(item => {\r",
-											"                pm.expect(item.userId).to.eql(loggedInUserId);\r",
-											"            });\r",
-											"        });\r",
-											"\r",
-											"        //checks if user has favorites items\r",
-											"\r",
-											"        pm.test(\"User has at least one favorite item\", function () {\r",
-											"            pm.expect(jsonData.length).to.be.above(0);\r",
-											"        });\r",
-											"\r",
-											"    } else {\r",
-											"        // user has no favorites items\r",
-											"        pm.test(\"User has no favorite items\", function () {\r",
-											"            pm.expect(jsonData.length).to.eql(0);\r",
-											"        });\r",
-											"    }\r",
-											"}"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-e00615a9-adc8-46a9-b66b-83442ca3c0a7",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/api/Favorite/GetFavorite",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Favorite",
-										"GetFavorite"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-82001340-b74a-427a-91b9-7cbc96e7ee52",
-									"name": "GetFavoriteItems",
-									"originalRequest": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/api/Favorite/GetFavorite",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Favorite",
-												"GetFavorite"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "2"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:46:36 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "[]"
-								}
-							]
-						},
-						{
-							"name": "DeleteFavoriteItem",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "327190a8-1aca-4978-baf1-39fb86c5ecfc",
-										"exec": [
-											"const jsonData = pm.response.json();\r",
-											"\r",
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"//Response time is below 1000ms\r",
-											"pm.test(\"Response time is below 1000ms\", function(){\r",
-											"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
-											"})\r",
-											"\r",
-											"//check API Url endpoint is valid\r",
-											"pm.test(\"API URL endpoint is valid\", function(){\r",
-											"    pm.expect(pm.request.url.toString()).to.eql(`${pm.environment.get('baseUrl')}/api/Favorite/DeleteFavorite/${pm.environment.get('favoriteItemId')}`);\r",
-											"})\r",
-											"\r",
-											"//check header content type\r",
-											"pm.test(\"Content-Type is application/json\", function(){\r",
-											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
-											"})\r",
-											""
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"id": "48284099-a12b29c8-0f5a-40ee-97aa-39e1605cc99e",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{enduserToken}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "my-auth-token",
-										"value": "{{enduserToken}}",
-										"type": "text"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"api",
-										"Favorite",
-										"DeleteFavorite",
-										"{{favoriteItemId}}"
-									]
-								}
-							},
-							"response": [
-								{
-									"id": "48284099-42e88ec1-d3ff-462c-9cb7-36b509830f1c",
-									"name": "DeleteFavoriteItem",
-									"originalRequest": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "my-auth-token",
-												"value": "{{enduserToken}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"api",
-												"Favorite",
-												"DeleteFavorite",
-												"{{favoriteItemId}}"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": null,
-									"header": [
-										{
-											"key": "Content-Length",
-											"value": "63"
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json; charset=utf-8"
-										},
-										{
-											"key": "Date",
-											"value": "Sun, 14 Sep 2025 20:47:15 GMT"
-										},
-										{
-											"key": "Server",
-											"value": "Kestrel"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n    \"favoriteItemId\": 6,\n    \"packageId\": 1,\n    \"userId\": 10\n}"
-								}
-							]
-						}
-					],
-					"id": "48284099-f1bde025-05a5-41ee-8dce-5f5d613e71ee"
-				},
-				{
 					"name": "Reservations",
 					"item": [
 						{
@@ -2276,8 +1471,814 @@
 					"id": "48284099-fb18103a-34ff-494e-a8bb-de17cde4199e"
 				},
 				{
-					"name": "New Folder",
-					"item": [],
+					"name": "Positive Ednpoints",
+					"item": [
+						{
+							"name": "Create User & Login",
+							"item": [
+								{
+									"name": "RegisterUserAccount",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "df99e881-2e8d-48d6-800b-8ae4d6135910",
+												"exec": [
+													"const requestBody = pm.request.body.raw;\r",
+													"const requestData = JSON.parse(requestBody);\r",
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"// Store accountId from newAccount\r",
+													"if (jsonData.newAccount && jsonData.newAccount.accountId) {\r",
+													"    pm.environment.set(\"accountId\", jsonData.newAccount.accountId);\r",
+													"    console.log(\"accountId stored from newAccount:\", jsonData.newAccount.accountId);\r",
+													"}\r",
+													"\r",
+													"// Store username \r",
+													"if (jsonData.newAccount && jsonData.newAccount.username){\r",
+													"    pm.environment.set(\"username\", jsonData.newAccount.username);\r",
+													"    console.log(\"username stored from newAccount\", jsonData.newAccount.username);\r",
+													"}\r",
+													"\r",
+													"//store user password\r",
+													"if (jsonData.newAccount && jsonData.newAccount.userPassword){\r",
+													"    pm.environment.set(\"userPassword\", jsonData.newAccount.userPassword);\r",
+													"    console.log(\"User password stored from newAccount\", jsonData.newAccount.userPassword);\r",
+													"}\r",
+													"\r",
+													"//checks API status\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"//checks JSON response\r",
+													"pm.test(\"Response is JSON\", function () {\r",
+													"    pm.expect(pm.response.json()).to.not.be.null;\r",
+													"});\r",
+													"\r",
+													"//checks if API response headers are valid\r",
+													"pm.test(\"check if API response headers are valid\", function () {\r",
+													"    pm.expect(pm.response.headers.get(\"Content-type\")).to.include(\"application/json\");\r",
+													"});\r",
+													"\r",
+													"//check if API respons time is below 500ms\r",
+													"pm.test(\"Response time is below 500ms\", function(){\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+													"});\r",
+													"\r",
+													"//checks if API method is Valid\r",
+													"pm.test(\"API method is valid\", function(){\r",
+													"    pm.expect(pm.request.method).to.eql(\"POST\");\r",
+													"});\r",
+													"\r",
+													"//checks if API endpoint URL is valid\r",
+													"pm.test(\"URL Endpoint is valid\", function(){\r",
+													"    const baseUrl = pm.variables.get(\"baseUrl\");\r",
+													"    pm.expect(pm.request.url.toString()).to.eql(`${baseUrl}/api/Users/RegisterUser`);\r",
+													"});\r",
+													"\r",
+													"//checks required fields\r",
+													"pm.test(\"Response contains required user properties\", function() {\r",
+													"    pm.expect(jsonData).to.have.property(\"newUser\");\r",
+													"    pm.expect(jsonData).to.have.property(\"newAccount\");\r",
+													"\r",
+													"    const newUser = jsonData.newUser;\r",
+													"    const newAccount = jsonData.newAccount;\r",
+													"\r",
+													"    pm.expect(newUser).to.have.property(\"name\");\r",
+													"    pm.expect(newUser).to.have.property(\"surname\");\r",
+													"    pm.expect(newUser).to.have.property(\"address\");\r",
+													"    pm.expect(newUser).to.have.property(\"dateOfBirth\");\r",
+													"    pm.expect(newUser).to.have.property(\"contact\");\r",
+													"    pm.expect(newUser).to.have.property(\"email\");\r",
+													"\r",
+													"    pm.expect(newAccount).to.have.property(\"accountTypeId\");\r",
+													"    pm.expect(newAccount).to.have.property(\"username\");\r",
+													"    pm.expect(newAccount).to.have.property(\"userPassword\");\r",
+													"    pm.expect(newAccount).to.have.property(\"userImage\");\r",
+													"});\r",
+													"\r",
+													"//checks are fields valid\r",
+													"pm.test(\"Response fields match request data\", function() {\r",
+													"    const newUser = jsonData.newUser;\r",
+													"    const newAccount = jsonData.newAccount;\r",
+													"\r",
+													"    pm.expect(newUser.email).to.eql(requestData.email);\r",
+													"    pm.expect(newUser.contact).to.eql(requestData.contact);\r",
+													"    pm.expect(newAccount.userImage).to.eql(requestData.userImage);\r",
+													"});\r",
+													"\r",
+													"//checks email format\r",
+													"pm.test(\"Email format is valid\", function() {\r",
+													"    const newUser = jsonData.newUser;\r",
+													"    pm.expect(newUser.email).to.match(/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/);\r",
+													"});\r",
+													"//checks if picture format valid\r",
+													"pm.test(\"Picture format is valid\", function() {\r",
+													"    const newAccount = jsonData.newAccount;\r",
+													"    pm.expect(newAccount.userImage).to.match(/\\w+\\.(jpg|png)$/i);\r",
+													"});\r",
+													"//checks if API payload size is within accepted limits 1024\r",
+													"pm.test(\"API payload is within acceptable size\", function(){\r",
+													"    pm.expect(pm.request.body.raw.length).to.be.below(1024);\r",
+													"});\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-3e27ec31-e723-4dae-a53e-7173e366c5f8",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"{{$randomFirstName}}\",\r\n  \"surname\": \"{{$randomLastName}}\",\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"dateOfBirth\": \"1998-09-14\",\r\n  \"contact\": \"{{$randomPhoneNumber}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"user.jpg\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Users/RegisterUser",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Users",
+												"RegisterUser"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-af3edd32-f9ac-44ca-83bd-9b182803f868",
+											"name": "RegisterUserAccount",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"name\": \"{{$randomFirstName}}\",\r\n  \"surname\": \"{{$randomLastName}}\",\r\n  \"address\": \"{{$randomStreetAddress}}\",\r\n  \"dateOfBirth\": \"1998-09-14\",\r\n  \"contact\": \"{{$randomPhoneNumber}}\",\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"accountTypeId\": 2,\r\n  \"username\": \"{{$randomUserName}}\",\r\n  \"userPassword\": \"{{$randomPassword}}\",\r\n  \"userImage\": \"user.jpg\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Users/RegisterUser",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Users",
+														"RegisterUser"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "1171"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:44:20 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"newUser\": {\n        \"userId\": 10,\n        \"name\": \"Lonny\",\n        \"surname\": \"Cruickshank\",\n        \"address\": \"50048 Derrick Square\",\n        \"dateOfBirth\": \"09-14-1998\",\n        \"contact\": \"596-475-8892\",\n        \"email\": \"Camille_Casper25@gmail.com\",\n        \"accounts\": [\n            {\n                \"accountId\": 9,\n                \"username\": \"Mandy_Smitham69\",\n                \"userPassword\": \"C4Rzmk01KSch7gk\",\n                \"userImage\": \"user.jpg\",\n                \"userId\": 10,\n                \"accountTypeId\": 2,\n                \"authenticationTokens\": []\n            }\n        ],\n        \"favorites\": [],\n        \"reservations\": [],\n        \"reviews\": []\n    },\n    \"newAccount\": {\n        \"accountId\": 9,\n        \"username\": \"Mandy_Smitham69\",\n        \"userPassword\": \"C4Rzmk01KSch7gk\",\n        \"userImage\": \"user.jpg\",\n        \"userId\": 10,\n        \"accountTypeId\": 2,\n        \"authenticationTokens\": [],\n        \"user\": {\n            \"userId\": 10,\n            \"name\": \"Lonny\",\n            \"surname\": \"Cruickshank\",\n            \"address\": \"50048 Derrick Square\",\n            \"dateOfBirth\": \"09-14-1998\",\n            \"contact\": \"596-475-8892\",\n            \"email\": \"Camille_Casper25@gmail.com\",\n            \"accounts\": [],\n            \"favorites\": [],\n            \"reservations\": [],\n            \"reviews\": []\n        }\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "UserLogin",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "7891d8bf-38e5-4d05-8e8b-389aea985318",
+												"exec": [
+													"//authorization token automaticaly added to the environment variable\r",
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"// checks if response has token value\r",
+													"if (jsonData.token) {\r",
+													"    pm.environment.set(\"enduserToken\", jsonData.token);\r",
+													"    console.log(\"User token set: \" + jsonData.token);\r",
+													"} else {\r",
+													"    console.log(\"Token not found in response!\");\r",
+													"}\r",
+													"\r",
+													"//store userId after login\r",
+													"if(jsonData.user && jsonData.user.userId){\r",
+													"    pm.environment.set(\"endUserId\", jsonData.user.userId);\r",
+													"}\r",
+													"\r",
+													"//store accountId\r",
+													"if(jsonData.user && jsonData.user.accountId){\r",
+													"    pm.environment.set(\"accountId\", jsonData.user.accountId);\r",
+													"}\r",
+													"\r",
+													"//checks response status\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"// Are API response headers valid\r",
+													"pm.test(\"API response header is valid\", function(){\r",
+													"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+													"});\r",
+													"\r",
+													"// Token is not empty\r",
+													"pm.test(\"Token is not empty\", function(){\r",
+													"    pm.expect(pm.response.json().token).not.to.be.empty;\r",
+													"})\r",
+													"\r",
+													"// response has token\r",
+													"pm.test(\"Response has token\", function(){\r",
+													"    pm.expect(pm.response.json()).to.have.property(\"token\");\r",
+													"    pm.expect(pm.response.json().token).to.be.a(\"string\").and.not.empty;\r",
+													"});\r",
+													"\r",
+													"//Response has objects\r",
+													"pm.test(\"Response has user object\", function(){\r",
+													"    pm.expect(pm.response.json().user).to.have.property(\"userId\");\r",
+													"    pm.expect(pm.response.json().user).to.have.property(\"name\");\r",
+													"    pm.expect(pm.response.json().user).to.have.property(\"surname\");\r",
+													"    pm.expect(pm.response.json().user).to.have.property(\"accountTypeId\");\r",
+													"});\r",
+													"\r",
+													"// UserId should be a positive number\r",
+													"pm.test(\"UserId is a positive number\", function () {\r",
+													"    pm.expect(jsonData.user.userId).to.be.a(\"number\");\r",
+													"    pm.expect(jsonData.user.userId).to.be.above(0);\r",
+													"});\r",
+													"\r",
+													"// Error handling if token is missing\r",
+													"if (!jsonData.token) {\r",
+													"    console.error(\"Token not found in response!\");\r",
+													"    pm.test(\"Token missing error\", function () {\r",
+													"        throw new Error(\"Token not found in response\");\r",
+													"    });\r",
+													"}\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-82bdcd91-c6a2-4269-bc7e-504468ac5180",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"userPassword\": \"{{userPassword}}\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-b3736b2b-e039-4b38-857e-276e3086434b",
+											"name": "UserLogin",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"username\": \"Mandy_Smitham69\",\r\n    \"userPassword\": \"C4Rzmk01KSch7gk\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/auth/login",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"auth",
+														"login"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "162"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:46:16 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"token\": \"TrTnajrLg2\",\n    \"tokenId\": 20,\n    \"user\": {\n        \"userId\": 10,\n        \"name\": \"Lonny\",\n        \"surname\": \"Cruickshank\",\n        \"accountTypeId\": 2\n    }\n}"
+										}
+									]
+								}
+							],
+							"id": "48284099-b0465c70-d924-4cb2-b034-d173f7c9ec5f"
+						},
+						{
+							"name": "Favorite Items",
+							"item": [
+								{
+									"name": "AddIntoFavorite",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3cfcedf1-c561-464a-bca0-e20d6d8ef8d4",
+												"exec": [
+													"pm.test(\"Response is JSON\", function () {\r",
+													"    pm.expect(pm.response.json());\r",
+													"});\r",
+													"\r",
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"pm.test(\"packageId matches request\", function () {\r",
+													"    const requestBody = pm.request.body ? JSON.parse(pm.request.body.raw) : {};\r",
+													"    const jsonData = pm.response.json();\r",
+													"    pm.expect(jsonData.packageId).to.eql(requestBody.packageId);\r",
+													"});\r",
+													"\r",
+													"//store favoriteItemId after adding it\r",
+													"if(jsonData && jsonData.favoriteItemId){\r",
+													"    pm.environment.set(\"favoriteItemId\", jsonData.favoriteItemId);\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-5a6e36e8-211e-4d63-a495-a2508ec22c06",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"packageId\": 1,\r\n  \"userId\": {{endUserId}}\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/api/Favorite/PostFavorite",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Favorite",
+												"PostFavorite"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-2a5ab4b2-1d0d-4ded-8912-b0da2ff0a956",
+											"name": "AddIntoFavorite",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"packageId\": 1,\r\n  \"userId\": {{endUserId}}\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/api/Favorite/PostFavorite",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Favorite",
+														"PostFavorite"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "63"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:46:47 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"favoriteItemId\": 6,\n    \"packageId\": 1,\n    \"userId\": 10\n}"
+										}
+									]
+								},
+								{
+									"name": "GetFavoriteItems",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "b059ad13-400c-49e6-b2a1-ca6d86b791af",
+												"exec": [
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"//checks if response is JSON\r",
+													"pm.test(\"Response is JSON\", function () {\r",
+													"    pm.expect(pm.response.json());\r",
+													"});\r",
+													"\r",
+													"isJson = true;\r",
+													"\r",
+													"if (isJson) {\r",
+													"    //Checks if there is favorites array\r",
+													"    pm.test(\"Favorites array is present\", function () {\r",
+													"        pm.expect(jsonData).to.be.an(\"array\");\r",
+													"    });\r",
+													"\r",
+													"    if (jsonData.length > 0) {\r",
+													"        // Each favorite item has required fields\r",
+													"        pm.test(\"Each favorite item has required fields\", function () {\r",
+													"            jsonData.forEach(item => {\r",
+													"                pm.expect(item).to.have.property(\"favoriteItemId\");\r",
+													"                pm.expect(item).to.have.property(\"packageId\");\r",
+													"                pm.expect(item).to.have.property(\"userId\");\r",
+													"            })\r",
+													"        });\r",
+													"\r",
+													"        // data types are valid\r",
+													"        pm.test(\"Favorite item fields have correct data types\", function () {\r",
+													"            jsonData.forEach(item => {\r",
+													"                pm.expect(item.favoriteItemId).to.be.a(\"number\");\r",
+													"                pm.expect(item.packageId).to.be.a(\"number\");\r",
+													"                pm.expect(item.userId).to.be.a(\"number\");\r",
+													"            })\r",
+													"        })\r",
+													"\r",
+													"        // Each favorite item belongs to the logged-in user\r",
+													"        pm.test(\"Each favorite item belongs to the logged-in user\", function () {\r",
+													"            const loggedInUserId = parseInt(pm.environment.get(\"endUserId\"), 10);\r",
+													"            jsonData.forEach(item => {\r",
+													"                pm.expect(item.userId).to.eql(loggedInUserId);\r",
+													"            });\r",
+													"        });\r",
+													"\r",
+													"        //checks if user has favorites items\r",
+													"\r",
+													"        pm.test(\"User has at least one favorite item\", function () {\r",
+													"            pm.expect(jsonData.length).to.be.above(0);\r",
+													"        });\r",
+													"\r",
+													"    } else {\r",
+													"        // user has no favorites items\r",
+													"        pm.test(\"User has no favorite items\", function () {\r",
+													"            pm.expect(jsonData.length).to.eql(0);\r",
+													"        });\r",
+													"    }\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-e00615a9-adc8-46a9-b66b-83442ca3c0a7",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Favorite/GetFavorite",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Favorite",
+												"GetFavorite"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-82001340-b74a-427a-91b9-7cbc96e7ee52",
+											"name": "GetFavoriteItems",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Favorite/GetFavorite",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Favorite",
+														"GetFavorite"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "2"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:46:36 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "[]"
+										}
+									]
+								},
+								{
+									"name": "DeleteFavoriteItem",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "327190a8-1aca-4978-baf1-39fb86c5ecfc",
+												"exec": [
+													"const jsonData = pm.response.json();\r",
+													"\r",
+													"pm.test(\"Status code is 200\", function () {\r",
+													"    pm.response.to.have.status(200);\r",
+													"});\r",
+													"\r",
+													"//Response time is below 1000ms\r",
+													"pm.test(\"Response time is below 1000ms\", function(){\r",
+													"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+													"})\r",
+													"\r",
+													"//check API Url endpoint is valid\r",
+													"pm.test(\"API URL endpoint is valid\", function(){\r",
+													"    pm.expect(pm.request.url.toString()).to.eql(`${pm.environment.get('baseUrl')}/api/Favorite/DeleteFavorite/${pm.environment.get('favoriteItemId')}`);\r",
+													"})\r",
+													"\r",
+													"//check header content type\r",
+													"pm.test(\"Content-Type is application/json\", function(){\r",
+													"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+													"})\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "48284099-a12b29c8-0f5a-40ee-97aa-39e1605cc99e",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{enduserToken}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "my-auth-token",
+												"value": "{{enduserToken}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"Favorite",
+												"DeleteFavorite",
+												"{{favoriteItemId}}"
+											]
+										}
+									},
+									"response": [
+										{
+											"id": "48284099-42e88ec1-d3ff-462c-9cb7-36b509830f1c",
+											"name": "DeleteFavoriteItem",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "my-auth-token",
+														"value": "{{enduserToken}}",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"api",
+														"Favorite",
+														"DeleteFavorite",
+														"{{favoriteItemId}}"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Content-Length",
+													"value": "63"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 14 Sep 2025 20:47:15 GMT"
+												},
+												{
+													"key": "Server",
+													"value": "Kestrel"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n    \"favoriteItemId\": 6,\n    \"packageId\": 1,\n    \"userId\": 10\n}"
+										}
+									]
+								}
+							],
+							"id": "48284099-f1bde025-05a5-41ee-8dce-5f5d613e71ee"
+						}
+					],
 					"id": "48284099-dc616134-2c4c-4750-97d7-954be60c4f24"
 				}
 			],
