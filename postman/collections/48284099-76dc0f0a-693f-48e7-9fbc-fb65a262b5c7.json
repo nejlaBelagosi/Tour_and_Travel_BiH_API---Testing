@@ -2994,7 +2994,7 @@
 							"name": "Favorite Items",
 							"item": [
 								{
-									"name": "AddIntoFavorites",
+									"name": "AddIntoFavorites - without authentication",
 									"id": "48284099-4e3ed844-7962-4d65-b5e0-5e97008642b0",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
