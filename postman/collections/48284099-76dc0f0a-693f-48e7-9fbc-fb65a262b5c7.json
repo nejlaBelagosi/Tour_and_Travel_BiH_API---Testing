@@ -4030,6 +4030,21 @@
 								},
 								{
 									"name": "GetReviewByPackageId",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "56dcfbf4-6089-475d-a1b4-4f55cc0acfd9",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
 									"id": "48284099-1c1188ca-09ff-40eb-a465-addb72b18e1f",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
