@@ -1506,7 +1506,10 @@
 													"\r",
 													"//check if all field data types are valid\r",
 													"pm.test(\"Filed data types are valid\", function(){\r",
-													"    pm.expect(jsonData.reviewId).\r",
+													"    pm.expect(jsonData.reviewId).to.eql(\"number\");\r",
+													"    pm.expect(jsonData.postDate).to.eql(\"date\");\r",
+													"    pm.expect(jsonData.reviewComment).to.eql(\"string\");\r",
+													"    pm.expect(jsonData.userId).to.eql(\"number\");\r",
 													"})"
 												],
 												"type": "text/javascript",
