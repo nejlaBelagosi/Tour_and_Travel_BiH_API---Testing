@@ -4137,7 +4137,7 @@
 									]
 								},
 								{
-									"name": "DeleteReview",
+									"name": "DeleteReview-unauthorized",
 									"event": [
 										{
 											"listen": "test",
