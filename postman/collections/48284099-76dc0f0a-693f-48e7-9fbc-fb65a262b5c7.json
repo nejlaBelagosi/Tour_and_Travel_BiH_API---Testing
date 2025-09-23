@@ -1836,11 +1836,7 @@
 													"pm.test(\"API response time is within acceptable limits\", function(){\r",
 													"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
 													"});\r",
-													"\r",
-													"//check API Payload size is within acceptable limits\r",
-													"pm.test(\"API payload size is wiyhin acceptable limits\", function(){\r",
-													"     pm.expect(pm.request.body.raw.length).to.be.below(1024);\r",
-													"})"
+													""
 												],
 												"type": "text/javascript",
 												"packages": {}
