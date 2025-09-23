@@ -754,7 +754,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/:favoriteItemId",
+											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -762,13 +762,7 @@
 												"api",
 												"Favorite",
 												"DeleteFavorite",
-												":favoriteItemId"
-											],
-											"variable": [
-												{
-													"key": "favoriteItemId",
-													"value": "{{favoriteItemId}}"
-												}
+												"{{favoriteItemId}}"
 											]
 										}
 									},
@@ -4356,7 +4350,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/DeleteReview/:reviewId",
+											"raw": "{{baseUrl}}/api/Review/DeleteReview/{{reviewId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -4364,13 +4358,7 @@
 												"api",
 												"Review",
 												"DeleteReview",
-												":reviewId"
-											],
-											"variable": [
-												{
-													"key": "reviewId",
-													"value": "{{reviewId}}"
-												}
+												"{{reviewId}}"
 											]
 										}
 									},
@@ -4485,7 +4473,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/api/Account/UpdateAccount/:accountId",
+											"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -4493,13 +4481,7 @@
 												"api",
 												"Account",
 												"UpdateAccount",
-												":accountId"
-											],
-											"variable": [
-												{
-													"key": "accountId",
-													"value": "{{accountId}}"
-												}
+												"{{accountId}}"
 											]
 										}
 									},
@@ -4716,7 +4698,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Account/DeleteAccount/:accountId",
+											"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -4724,13 +4706,7 @@
 												"api",
 												"Account",
 												"DeleteAccount",
-												":accountId"
-											],
-											"variable": [
-												{
-													"key": "accountId",
-													"value": "{{accountId}}"
-												}
+												"{{accountId}}"
 											]
 										}
 									},
