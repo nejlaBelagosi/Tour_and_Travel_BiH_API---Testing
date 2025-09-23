@@ -3499,7 +3499,8 @@
 													"});"
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -3511,7 +3512,7 @@
 										"method": "PUT",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/{{reservationId}}",
+											"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/:reservationId",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -3519,7 +3520,13 @@
 												"api",
 												"Reservation",
 												"UpdateReservation",
-												"{{reservationId}}"
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "{{reservationId}}"
+												}
 											]
 										}
 									},
