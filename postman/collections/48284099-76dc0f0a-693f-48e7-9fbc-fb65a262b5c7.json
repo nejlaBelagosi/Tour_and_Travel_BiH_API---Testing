@@ -1272,7 +1272,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/GetReservationsByUserId/:endUserId",
+											"raw": "{{baseUrl}}/api/Reservation/GetReservationsByUserId/{{endUserId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -1280,13 +1280,7 @@
 												"api",
 												"Reservation",
 												"GetReservationsByUserId",
-												":endUserId"
-											],
-											"variable": [
-												{
-													"key": "endUserId",
-													"value": "{{endUserId}}"
-												}
+												"{{endUserId}}"
 											]
 										}
 									},
