@@ -48,7 +48,6 @@ jobs:
       - name: Run API tests
         run: |
           postman collection run "48284099-76dc0f0a-693f-48e7-9fbc-fb65a262b5c7" \
-          --folder "EndUser / Positive Tests" \
           -e "48284099-1a85045b-9055-4e34-8350-cac0d14971be" \
           --env-var "baseUrl=http://localhost:5278"
 
