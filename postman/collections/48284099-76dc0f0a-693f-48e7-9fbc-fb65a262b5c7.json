@@ -3247,7 +3247,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/:favoriteItemId",
+											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -3255,13 +3255,7 @@
 												"api",
 												"Favorite",
 												"DeleteFavorite",
-												":favoriteItemId"
-											],
-											"variable": [
-												{
-													"key": "favoriteItemId",
-													"value": "{{favoriteItemId}}"
-												}
+												"{{favoriteItemId}}"
 											]
 										}
 									},
