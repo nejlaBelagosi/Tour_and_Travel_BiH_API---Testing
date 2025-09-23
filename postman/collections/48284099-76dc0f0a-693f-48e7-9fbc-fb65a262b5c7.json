@@ -4471,7 +4471,8 @@
 													"});"
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -4508,7 +4509,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/api/Account/UpdateAccount/{{accountId}}",
+											"raw": "{{baseUrl}}/api/Account/UpdateAccount/:accountId",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -4516,7 +4517,13 @@
 												"api",
 												"Account",
 												"UpdateAccount",
-												"{{accountId}}"
+												":accountId"
+											],
+											"variable": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}"
+												}
 											]
 										}
 									},
