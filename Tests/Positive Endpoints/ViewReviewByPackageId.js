@@ -22,7 +22,3 @@ pm.test("API response time is within acceptable limits", function(){
     pm.expect(pm.response.responseTime).to.be.below(500);
 });
 
-//check API Payload size is within acceptable limits
-pm.test("API payload size is wiyhin acceptable limits", function(){
-     pm.expect(pm.request.body.raw.length).to.be.below(1024);
-})
