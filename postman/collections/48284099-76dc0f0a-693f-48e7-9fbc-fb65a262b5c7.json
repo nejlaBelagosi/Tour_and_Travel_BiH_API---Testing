@@ -3591,7 +3591,8 @@
 													"})"
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -3603,7 +3604,7 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/DeleteReservation/{{reservationId}}",
+											"raw": "{{baseUrl}}/api/Reservation/DeleteReservation/:reservationId",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -3611,7 +3612,13 @@
 												"api",
 												"Reservation",
 												"DeleteReservation",
-												"{{reservationId}}"
+												":reservationId"
+											],
+											"variable": [
+												{
+													"key": "reservationId",
+													"value": "{{reservationId}}"
+												}
 											]
 										}
 									},
