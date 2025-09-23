@@ -21,27 +21,32 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'  # koristi verziju koju API koristi
+          dotnet-version: '8.0.x'
 
-      # Build i start ASP.NET Core API
-      - name: Build and run API
+      # Build API
+      - name: Build API
         run: |
           dotnet restore ./TourAndTravelBiH/TourAndTravelBiH/TourAndTravelBiH.csproj
           dotnet build ./TourAndTravelBiH/TourAndTravelBiH/TourAndTravelBiH.csproj --configuration Release
-          dotnet run --project ./TourAndTravelBiH/TourAndTravelBiH/TourAndTravelBiH.csproj --urls http://localhost:5278 & 
-          sleep 15 
+
+      # Start API in the background on port 5278
+      - name: Start API
+        run: |
+          dotnet run --project ./TourAndTravelBiH/TourAndTravelBiH/TourAndTravelBiH.csproj --urls http://localhost:5278 &
+          sleep 15   # čekaj da API bude dostupan
 
       # Install Postman CLI
       - name: Install Postman CLI
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
 
-      # Login Postman CLI
+      # Login to Postman CLI
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
 
-      # Run Postman tests
+      # Run Postman tests with baseUrl override
       - name: Run API tests
         run: |
           postman collection run "48284099-76dc0f0a-693f-48e7-9fbc-fb65a262b5c7" \
-          -e "48284099-1a85045b-9055-4e34-8350-cac0d14971be"
+          -e "48284099-1a85045b-9055-4e34-8350-cac0d14971be" \
+          --env-var "baseUrl=http://localhost:5278"
