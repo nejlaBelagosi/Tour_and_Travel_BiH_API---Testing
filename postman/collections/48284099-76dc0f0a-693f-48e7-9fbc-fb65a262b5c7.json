@@ -3278,7 +3278,8 @@
 													"});"
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -3306,7 +3307,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/{{favoriteItemId}}",
+											"raw": "{{baseUrl}}/api/Favorite/DeleteFavorite/:favoriteItemId",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -3314,7 +3315,13 @@
 												"api",
 												"Favorite",
 												"DeleteFavorite",
-												"{{favoriteItemId}}"
+												":favoriteItemId"
+											],
+											"variable": [
+												{
+													"key": "favoriteItemId",
+													"value": "{{favoriteItemId}}"
+												}
 											]
 										}
 									},
