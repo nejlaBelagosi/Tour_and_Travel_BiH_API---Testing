@@ -2353,7 +2353,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Account/DeleteAccount/:accountId",
+											"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -2361,13 +2361,7 @@
 												"api",
 												"Account",
 												"DeleteAccount",
-												":accountId"
-											],
-											"variable": [
-												{
-													"key": "accountId",
-													"value": "{{accountId}}"
-												}
+												"{{accountId}}"
 											]
 										}
 									},
