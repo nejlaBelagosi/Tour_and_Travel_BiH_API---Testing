@@ -4257,7 +4257,8 @@
 													"});"
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -4272,7 +4273,7 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/DeleteReview/{{reviewId}}",
+											"raw": "{{baseUrl}}/api/Review/DeleteReview/:reviewId",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -4280,7 +4281,13 @@
 												"api",
 												"Review",
 												"DeleteReview",
-												"{{reviewId}}"
+												":reviewId"
+											],
+											"variable": [
+												{
+													"key": "reviewId",
+													"value": "{{reviewId}}"
+												}
 											]
 										}
 									},
