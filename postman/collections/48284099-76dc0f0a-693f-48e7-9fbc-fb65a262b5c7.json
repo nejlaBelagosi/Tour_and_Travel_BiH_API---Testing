@@ -1094,7 +1094,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/:reservationId",
+											"raw": "{{baseUrl}}/api/Reservation/UpdateReservation/{{reservationId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -1102,13 +1102,7 @@
 												"api",
 												"Reservation",
 												"UpdateReservation",
-												":reservationId"
-											],
-											"variable": [
-												{
-													"key": "reservationId",
-													"value": "{{reservationId}}"
-												}
+												"{{reservationId}}"
 											]
 										}
 									},
