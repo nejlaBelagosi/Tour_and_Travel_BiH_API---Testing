@@ -1873,7 +1873,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId/:tourPackageId",
+											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId/{{tourPackageId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -1882,13 +1882,7 @@
 												"Review",
 												"GetReviewByPackageId",
 												"GetReviewByPackageId",
-												":tourPackageId"
-											],
-											"variable": [
-												{
-													"key": "tourPackageId",
-													"value": "{{tourPackageId}}"
-												}
+												"{{tourPackageId}}"
 											]
 										}
 									},
@@ -1998,7 +1992,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/DeleteReview/:reviewId",
+											"raw": "{{baseUrl}}/api/Review/DeleteReview/{{reviewId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -2006,13 +2000,7 @@
 												"api",
 												"Review",
 												"DeleteReview",
-												":reviewId"
-											],
-											"variable": [
-												{
-													"key": "reviewId",
-													"value": "{{reviewId}}"
-												}
+												"{{reviewId}}"
 											]
 										}
 									},
