@@ -4142,7 +4142,8 @@
 													"});"
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -4170,7 +4171,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId/{{tourPackageId}}",
+											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId/:tourPackageId",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -4179,7 +4180,13 @@
 												"Review",
 												"GetReviewByPackageId",
 												"GetReviewByPackageId",
-												"{{tourPackageId}}"
+												":tourPackageId"
+											],
+											"variable": [
+												{
+													"key": "tourPackageId",
+													"value": "{{tourPackageId}}"
+												}
 											]
 										}
 									},
