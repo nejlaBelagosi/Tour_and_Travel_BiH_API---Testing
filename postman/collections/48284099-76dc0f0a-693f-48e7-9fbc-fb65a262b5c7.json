@@ -4011,7 +4011,8 @@
 													"});"
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -4048,7 +4049,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/UpdateReview/{{reviewId}}",
+											"raw": "{{baseUrl}}/api/Review/UpdateReview/:reviewId",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -4056,7 +4057,13 @@
 												"api",
 												"Review",
 												"UpdateReview",
-												"{{reviewId}}"
+												":reviewId"
+											],
+											"variable": [
+												{
+													"key": "reviewId",
+													"value": "{{reviewId}}"
+												}
 											]
 										}
 									},
