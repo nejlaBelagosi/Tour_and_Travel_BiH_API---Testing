@@ -1402,7 +1402,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Reservation/DeleteReservation/:reservationId",
+											"raw": "{{baseUrl}}/api/Reservation/DeleteReservation/{{reservationId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -1410,13 +1410,7 @@
 												"api",
 												"Reservation",
 												"DeleteReservation",
-												":reservationId"
-											],
-											"variable": [
-												{
-													"key": "reservationId",
-													"value": "{{reservationId}}"
-												}
+												"{{reservationId}}"
 											]
 										}
 									},
