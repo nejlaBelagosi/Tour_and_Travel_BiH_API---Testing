@@ -2372,7 +2372,8 @@
 													""
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -2400,7 +2401,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Account/DeleteAccount/{{accountId}}",
+											"raw": "{{baseUrl}}/api/Account/DeleteAccount/:accountId",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -2408,7 +2409,13 @@
 												"api",
 												"Account",
 												"DeleteAccount",
-												"{{accountId}}"
+												":accountId"
+											],
+											"variable": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}"
+												}
 											]
 										}
 									},
