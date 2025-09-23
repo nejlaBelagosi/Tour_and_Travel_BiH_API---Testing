@@ -1691,7 +1691,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/UpdateReview/:reviewId",
+											"raw": "{{baseUrl}}/api/Review/UpdateReview/{{reviewId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -1699,13 +1699,7 @@
 												"api",
 												"Review",
 												"UpdateReview",
-												":reviewId"
-											],
-											"variable": [
-												{
-													"key": "reviewId",
-													"value": "{{reviewId}}"
-												}
+												"{{reviewId}}"
 											]
 										}
 									},
