@@ -4080,14 +4080,13 @@
 											}
 										],
 										"url": {
-											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/GetReviewByPackageId/{{tourPackageId}}",
+											"raw": "{{baseUrl}}/api/Review/GetReviewByPackageId/{{tourPackageId}}",
 											"host": [
 												"{{baseUrl}}"
 											],
 											"path": [
 												"api",
 												"Review",
-												"GetReviewByPackageId",
 												"GetReviewByPackageId",
 												"{{tourPackageId}}"
 											]
