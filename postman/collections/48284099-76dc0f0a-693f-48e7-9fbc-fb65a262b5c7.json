@@ -289,7 +289,8 @@
 													""
 												],
 												"type": "text/javascript",
-												"packages": {}
+												"packages": {},
+												"requests": {}
 											}
 										}
 									],
@@ -311,7 +312,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"userPassword\": \"{{userPassword}}\"\r\n}",
+											"raw": "{\r\n    \"username\": \"zejnilovicb\",\r\n    \"userPassword\": \"Berina11$\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
